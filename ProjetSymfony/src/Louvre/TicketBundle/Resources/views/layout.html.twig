@@ -27,6 +27,9 @@
           background: #4e4e4e;
           color:white;
         }
+        body {
+          background: #331107;
+        }
 
     </style>
   </head>
@@ -74,7 +77,16 @@
           <div class="panel-heading">
             <h3 class="panel-title">SELECTIONNER VOTRE NOMBRE DE BILLET</h3>
           </div>
-        <p> ICI DOIT SE TROUVER LE NOMBRE BILLET ET FORMULAIRE REMPLISSAGE D INFOS</p>
+            <div class="well">
+              <form action="test.php">
+                      <input type="checkbox" name="reduction" value="reduction1">Tarif réduit
+                      <input type="text"  name ="nom" id="nom" placeholder="Votre nom">                    
+                      <input type="text"  name="prenom" id="prenom" placeholder="Votre Prénom">
+                      <input type="text"  name="pays" id="pays" placeholder="Votre Pays">
+                      <input type="date"  name="naissance" id="naissance" placeholder="date de naissance">
+                      <span> Prix </span>
+              </form>
+            </div>
         </div>
       </div>
 
@@ -83,7 +95,9 @@
           <div class="panel-heading">
             <h3 class="panel-title">PANIER</h3>
           </div>
-        <p> RECAPITULATIF ET VALIDATION DU PANIER </p>
+            <div class="well text-center">
+               <p> RECAPITULATIF ET VALIDATION DU PANIER </p>
+            </div>
         </div>
       </div>
     </div>
