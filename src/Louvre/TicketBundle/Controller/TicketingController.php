@@ -10,7 +10,7 @@ use Louvre\TicketBundle\Entity\GlobalTicket;
 
 class TicketingController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction(Request $request )
     {
     	$globalticket = new GlobalTicket();
     	$form = $this->get('form.factory')->create(GlobalTicketType::class, $globalticket);
@@ -21,12 +21,40 @@ class TicketingController extends Controller
 		      $em->persist($globalticket);
 		      $em->flush();
 
+		      return $this->redirectToRoute('louvre_ticket_view', array('id' => $globalticket->getId()));
+
 		 }
 		return $this->render('LouvreTicketBundle:Ticketing:index.html.twig'
 			, array(
 			'form' => $form->createView(),
+			
 			));
     }
+
+    public function viewAction($id)
+  {
+    $em = $this->getDoctrine()->getManager();
+    // Pour récupérer une seule annonce, on utilise la méthode find($id)
+    $billet = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
+   
+    if (null === $billet) {
+      throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+    }
+    // Récupération de la liste des tickets de l'annonce
+    $listTickets = $em
+    ->getRepository('LouvreTicketBundle:Ticket')
+    ->findBy(array('globalticket' => $billet ))
+    ;
+    
+    
+    return $this->render('LouvreTicketBundle:Ticketing:view.html.twig', array(
+      'billet'           => $billet,
+      'listTickets'      => $listTickets
+      
+    ));
+  }
+
+
 }
  
   

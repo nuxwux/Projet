@@ -2,3 +2,9 @@ louvre_ticket_home:
     path:     /billetterie
     defaults: 
         _controller: LouvreTicketBundle:Ticketing:index
+
+
+louvre_ticket_view:
+    path:    /billetterie/{id}
+    defaults:
+        _controller: LouvreTicketBundle:Ticketing:view 

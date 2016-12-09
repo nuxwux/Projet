@@ -58,8 +58,8 @@ class GlobalTicket
     private $name;
 
    /**
-   * @ORM\ManyToMany(targetEntity="Louvre\TicketBundle\Entity\Ticket", cascade={"persist"})
-   * @ORM\JoinTable(name="globalticket_ticket")
+   * @ORM\OneToMany(targetEntity="Louvre\TicketBundle\Entity\Ticket", mappedBy="globalticket",cascade={"persist"})
+   
    */
     private $tickets;
 

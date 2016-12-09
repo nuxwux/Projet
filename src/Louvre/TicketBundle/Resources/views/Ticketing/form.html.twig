@@ -16,7 +16,8 @@
   {{ form_row(form.mail) }}
 
   
-  {{ form_widget(form.tickets, {'attr': {'class': 'col-sm-12'}}) }}
+  {{ form_widget(form.tickets.name) }}
+  
   <a href="#" id="add_category" class="btn btn-default">Ajouter un billet</a><br>
   
   {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
@@ -29,6 +30,8 @@
   {# Fermeture de la balise <form> du formulaire HTML #}
   {{ form_end(form) }}
 </div>
+
+
 
 
 {# On charge la bibliothèque jQuery. Ici, je la prends depuis le CDN google

@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 
 
+
 class GlobalTicketType extends AbstractType
 {
     /**
@@ -31,12 +32,12 @@ class GlobalTicketType extends AbstractType
             'required' => false,
         )  )
         ->add('mail',      EmailType::class)
-        // ->add('tickets',   TicketType::class)
-        ->add('tickets', CollectionType::class, array(
-        'entry_type'   => TicketType::class,
+        ->add('tickets',   CollectionType::class, array(
+        'entry_type'   =>  TicketType::class,
         'allow_add'    => true,
-        'allow_delete' => true
-      ))
+        'allow_delete' => true,
+        
+         ))
         ->add('save',      SubmitType::class)       
         ;
     }

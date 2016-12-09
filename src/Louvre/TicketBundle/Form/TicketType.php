@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class TicketType extends AbstractType
 {
@@ -22,12 +23,12 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('name',  TextType::class)
+        ->add('name',      TextType::class)
         ->add('firstname', TextType::class)
         ->add('country',   TextType::class)
-        ->add('birthdate',  BirthdayType::class)
-        ->add('price',   IntegerType::class)  
-        
+        ->add('birthdate', BirthdayType::class)
+        ->add('price',     IntegerType::class)  
+       
           
         ;
     }

@@ -1,0 +1,29 @@
+
+{% extends "LouvreTicketBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h1> Ma super vue </h1>
+ 		<p> {{ billet.datecreation|date('d/m/Y') }}</p>
+
+ 		<p> {{ billet.name }} </p>
+
+ 		<h2> {{ billet.ticketype }} </h2>
+ 		<h2> {{ billet.datevisit|date('d/m/Y')}} </h2>
+ 		<h2> {{ billet.mail}} </h2>
+
+ 		{% if listTickets|length > 0 %}
+ 			{% for ticket in list Tickets %}
+		 		<h2> {{ ticket.tickets.name}} </h2>
+		 		<h2> {{ ticket.tickets.surname}} </h2>
+		 		<h2> {{ ticket.tickets.country}} </h2>
+	 		{% endfor %}
+	 	{% endif %}
+
+
+
+{% endblock %}

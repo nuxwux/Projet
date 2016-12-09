@@ -55,6 +55,11 @@ class Ticket
      * @ORM\Column(name="price", type="integer")
      */
     private $price;
+    /**
+   * @ORM\ManyToOne(targetEntity="Louvre\TicketBundle\Entity\GlobalTicket", inversedBy="tickets")
+   * @ORM\JoinColumn()
+   */
+    private $globalticket;
 
   
 
