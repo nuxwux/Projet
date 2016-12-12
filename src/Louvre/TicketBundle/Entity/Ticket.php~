@@ -224,28 +224,5 @@ class Ticket
     {
         return $this->globalticket;
     }
-
-    /**
-     * Set reduction
-     *
-     * @param boolean $reduction
-     *
-     * @return Ticket
-     */
-    public function setReduction($reduction)
-    {
-        $this->reduction = $reduction;
-
-        return $this;
-    }
-
-    /**
-     * Get reduction
-     *
-     * @return boolean
-     */
-    public function getReduction()
-    {
-        return $this->reduction;
-    }
 }
+

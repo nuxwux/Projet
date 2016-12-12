@@ -28,8 +28,8 @@
     <h3 class="panel-title">Sélectionnez votre Billet</h3>
   </div>
   <div class="panel-body">
-    <label class="radio-inline"><input type="radio" name="optradio">Billet Journée</label>
-    <label class="radio-inline"><input type="radio" name="optradio">Billet Demi-Journée</label>
+    <div class="col-lg-6 text-center"><label class="radio-inline"><input type="radio" name="optradio">Billet Journée</label></div>
+    <div class="col-lg-6 text-center"><label class="radio-inline"><input type="radio" name="optradio">Billet Demi-Journée</label></div>
   </div>
 </div>
 
@@ -41,20 +41,23 @@
   <div class="panel-body">
     <form class="form-inline">
       <div class="form-group">
-        <label for="exampleInputEmail3">Nom</label>
+        <label class="tarif"><input type="checkbox" value="" id="tarif">Tarif réduit</label>
+      </div>
+      <div class="form-group">
+        
         <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Votre nom">
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword3">Prénom</label>
+        
         <input type="text" class="form-control" id="exampleInputPassword3" placeholder="Votre prénom">
       </div> 
       <div class="form-group">
-        <label for="exampleInputPassword3">Pays</label>
+        
         <input type="text" class="form-control" id="exampleInputPassword3" placeholder="Country">
       </div>
       <div class="form-group">
         <label for="exampleInputPassword3">Date de naissance</label>
-        <input type="birthdate" class="form-control" id="exampleInputPassword3" placeholder="Votre prénom">
+        <input type="date" class="form-control" id="exampleInputPassword3">
       </div>  
     </form>
   </div>

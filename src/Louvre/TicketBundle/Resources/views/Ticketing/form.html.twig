@@ -17,14 +17,14 @@
 
   <h3> Mes tickets </h3>
   
-  {# {{ form_widget(form.tickets, {'attr': {'class': 'col-sm-12'}}) }} #}
+  {{ form_widget(form.tickets, {'attr': {'class': 'col-sm-12'}}) }}
 
-  {% for ticket in form.tickets %}
+  {# {% for ticket in form.tickets %}
 
    {{ form_label(ticket.firstname, "Mon prénom") }}
    
-  {% endfor %}
-{# <a href="#" id="add_category" class="btn btn-default">Ajouter un billet</a><br> #}
+  {% endfor %} #}
+<a href="#" id="add_category" class="btn btn-default">Ajouter un billet</a><br>
 
   
   
