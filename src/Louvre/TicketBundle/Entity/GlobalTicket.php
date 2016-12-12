@@ -58,7 +58,7 @@ class GlobalTicket
     private $name;
 
    /**
-   * @ORM\OneToMany(targetEntity="Louvre\TicketBundle\Entity\Ticket", mappedBy="globalticket",cascade={"persist"})
+   * @ORM\OneToMany(targetEntity="Louvre\TicketBundle\Entity\Ticket", mappedBy="global_ticket",cascade={"persist"})
    
    */
     private $tickets;
@@ -211,6 +211,8 @@ class GlobalTicket
     public function addTicket(\Louvre\TicketBundle\Entity\Ticket $ticket)
     {
         $this->tickets[] = $ticket;
+
+        $ticket->setGlobalticket($this);
 
         return $this;
     }

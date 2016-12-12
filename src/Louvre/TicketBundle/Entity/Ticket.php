@@ -56,7 +56,7 @@ class Ticket
      */
     private $price;
     /**
-   * @ORM\ManyToOne(targetEntity="Louvre\TicketBundle\Entity\GlobalTicket", inversedBy="tickets")
+   * @ORM\ManyToOne(targetEntity="Louvre\TicketBundle\Entity\GlobalTicket", inversedBy="ticket")
    * @ORM\JoinColumn()
    */
     private $globalticket;
@@ -192,6 +192,30 @@ class Ticket
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Set globalticket
+     *
+     * @param GlobalTicket $globalticket
+     *
+     * @return Ticket
+     */
+    public function setGlobalticket(GlobalTicket $globalticket = null)
+    {
+        $this->globalticket = $globalticket;
+
+        return $this;
+    }
+
+    /**
+     * Get globalticket
+     *
+     * @return GlobalTicket
+     */
+    public function getGlobalticket()
+    {
+        return $this->globalticket;
     }
 }
 

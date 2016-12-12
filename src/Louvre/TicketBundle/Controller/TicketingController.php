@@ -55,6 +55,17 @@ class TicketingController extends Controller
   }
 
 
+  public function exempleAction(Request $request )
+    {
+        
+        return $this->render('LouvreTicketBundle:Ticketing:exemple.html.twig'
+            , array(
+            
+            
+            ));
+    }
+
+
 }
  
   

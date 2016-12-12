@@ -15,10 +15,18 @@
  
   {{ form_row(form.mail) }}
 
+  <h3> Mes tickets </h3>
   
-  {{ form_widget(form.tickets.name) }}
+  {# {{ form_widget(form.tickets, {'attr': {'class': 'col-sm-12'}}) }} #}
+
+  {% for ticket in form.tickets %}
+
+   {{ form_label(ticket.firstname, "Mon prénom") }}
+   
+  {% endfor %}
+{# <a href="#" id="add_category" class="btn btn-default">Ajouter un billet</a><br> #}
+
   
-  <a href="#" id="add_category" class="btn btn-default">Ajouter un billet</a><br>
   
   {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
 
@@ -36,10 +44,17 @@
 
 {# On charge la bibliothèque jQuery. Ici, je la prends depuis le CDN google
    mais si vous l'avez en local, changez simplement l'adresse. #}
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 
 {# Voici le script en question : #}
 <script type="text/javascript">
+    $( function() {
+    $( "#louvre_ticketbundle_globalticket_datevisit" ).datepicker();
+  } );
+
+
+
+
   $(document).ready(function() {
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
     var $container = $('div#louvre_ticketbundle_globalticket_tickets');

@@ -8,3 +8,8 @@ louvre_ticket_view:
     path:    /billetterie/{id}
     defaults:
         _controller: LouvreTicketBundle:Ticketing:view 
+
+louvre_ticket_exemple:
+    path:    /exemple
+    defaults:
+        _controller: LouvreTicketBundle:Ticketing:exemple 

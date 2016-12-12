@@ -36,11 +36,14 @@ class GlobalTicketType extends AbstractType
         'entry_type'   =>  TicketType::class,
         'allow_add'    => true,
         'allow_delete' => true,
+        'by_reference' => false,
         
          ))
         ->add('save',      SubmitType::class)       
         ;
     }
+
+   
     
     /**
      * {@inheritdoc}
