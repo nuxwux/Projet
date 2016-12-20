@@ -21,48 +21,40 @@ class GlobalTicket
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="datecreation", type="datetime")
      */
     private $datecreation;
-
     /**
      * @var \Date
      *
      * @ORM\Column(name="datevisit", type="date")
      */
     private $datevisit;
-
     /**
      * @var string
      *
      * @ORM\Column(name="ticketype", type="string", length=255)
      */
     private $ticketype;
-
     /**
      * @var string
      *
      * @ORM\Column(name="mail", type="string", length=255)
      */
     private $mail;
-
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
-   /**
-   * @ORM\OneToMany(targetEntity="Louvre\TicketBundle\Entity\Ticket", mappedBy="global_ticket",cascade={"persist"})
-   
-   */
+    /**
+     * @ORM\OneToMany(targetEntity="Louvre\TicketBundle\Entity\Ticket", mappedBy="global_ticket",cascade={"persist"})
+     */
     private $tickets;
-
 
     public function __construct()
     {
@@ -70,7 +62,6 @@ class GlobalTicket
         $this->name = "Visite de Musée";
         $this->tickets = new ArrayCollection();
     }
-
     /**
      * Get id
      *
@@ -80,7 +71,6 @@ class GlobalTicket
     {
         return $this->id;
     }
-
     /**
      * Set datecreation
      *

@@ -18,6 +18,7 @@ class TicketingController extends Controller
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
 		      $em = $this->getDoctrine()->getManager();
+              
 		      $em->persist($globalticket);
 		      $em->flush();
 
@@ -35,21 +36,21 @@ class TicketingController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
     // Pour récupérer une seule annonce, on utilise la méthode find($id)
-    $billet = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
+    $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
    
-    if (null === $billet) {
+    if (null === $globalticket) {
       throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
     }
     // Récupération de la liste des tickets de l'annonce
     $listTickets = $em
     ->getRepository('LouvreTicketBundle:Ticket')
-    ->findBy(array('globalticket' => $billet ))
+    ->findBy(array('globalticket' => $globalticket ))
     ;
     
     
     return $this->render('LouvreTicketBundle:Ticketing:view.html.twig', array(
-      'billet'           => $billet,
-      'listTickets'      => $listTickets
+      'globalticket'           => $globalticket,
+      'listTickets'      => $listTickets,
       
     ));
   }

@@ -23,18 +23,14 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('reduction',  CheckboxType::class)
-        ->add('name',      TextType::class)
+        ->add('reduction',  CheckboxType::class, array('required' => false))
+        ->add('name',      TextType::class, array(
+            'attr' => ['class' => 'namehello']))
         ->add('firstname', TextType::class)
         ->add('country',   TextType::class)
-        ->add('birthdate', BirthdayType::class)
-
-        ->add('price',     IntegerType::class)  
-       
-          
+        ->add('birthdate', BirthdayType::class)    
         ;
     }
-    
     /**
      * {@inheritdoc}
      */

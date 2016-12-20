@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
 
@@ -24,27 +25,35 @@ class GlobalTicketType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $choix = array(
+            'Journée' => 'Journée',
+            'Demi-journée' => 'Demi-journée',
+            );
+
         $builder
-        
-        ->add('datevisit', DateType::class)
-        ->add('ticketype', CheckboxType::class, array(
-            'label'    => 'Billet demi-journée',
-            'required' => false,
-        )  )
-        ->add('mail',      EmailType::class)
+        ->add('datevisit', DateType::class, array(
+            'widget' => 'single_text',
+            'format' => 'dd/MM/yyyy',
+            'html5' => 'false',
+            'attr' => ['class' => 'datepicker'],
+            ))
+
+        ->add('ticketype', ChoiceType::class , array(
+            'multiple' => false,
+            'expanded' => true,
+            'choices' => $choix,
+           ))
+        ->add('mail',      EmailType::class, array(
+            'attr' => ['id' => 'monemail']))
         ->add('tickets',   CollectionType::class, array(
-        'entry_type'   =>  TicketType::class,
-        'allow_add'    => true,
-        'allow_delete' => true,
-        'by_reference' => false,
-        
+            'entry_type'   =>  TicketType::class,
+            'allow_add'    => true,
+            'allow_delete' => true,
+            'by_reference' => false,
          ))
         ->add('save',      SubmitType::class)       
         ;
     }
-
-   
-    
     /**
      * {@inheritdoc}
      */
@@ -54,7 +63,6 @@ class GlobalTicketType extends AbstractType
             'data_class' => 'Louvre\TicketBundle\Entity\GlobalTicket'
         ));
     }
-
     /**
      * {@inheritdoc}
      */

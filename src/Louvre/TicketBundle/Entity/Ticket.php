@@ -61,16 +61,24 @@ class Ticket
 
     private $reduction;
     /**
-   * @ORM\ManyToOne(targetEntity="Louvre\TicketBundle\Entity\GlobalTicket", inversedBy="ticket")
-   * @ORM\JoinColumn()
-   */
-
-
+     * @ORM\ManyToOne(targetEntity="Louvre\TicketBundle\Entity\GlobalTicket", inversedBy="ticket")
+     * @ORM\JoinColumn()
+     */
     private $globalticket;
 
-  
+    public function __construct()
+    {
+     
+            $this->price = "23" + "10";
+        
+    }
+
+    //  public function calculPrice()
+    // {
+    //    $this->price = "23" + "10";
 
 
+    // }
     /**
      * Get id
      *
@@ -200,6 +208,8 @@ class Ticket
     {
         return $this->price;
     }
+
+   
 
     /**
      * Set globalticket

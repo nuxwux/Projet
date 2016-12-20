@@ -1,0 +1,29 @@
+{%- block form_row -%}
+   
+{# <div class="form-inline"> #}
+
+    {% if (form.vars.name == 'name')  %}
+
+    	<div class="col-md-3 form-group">
+
+    {% elseif (form.vars.name == 'firstname')  %}
+    
+        <div class="col-md-5 form-group">
+
+   {% else   %}
+   		<div>
+
+    {% endif %}
+        {{- form_label(form) -}}
+        {{- form_errors(form) -}}
+        {{- form_widget(form ) -}}
+    </div>
+
+   
+
+
+
+ 
+{%- endblock form_row -%}
+
+
