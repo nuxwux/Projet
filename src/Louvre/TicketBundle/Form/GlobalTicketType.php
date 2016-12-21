@@ -51,8 +51,10 @@ class GlobalTicketType extends AbstractType
             'allow_delete' => true,
             'by_reference' => false,
          ))
-        ->add('save',      SubmitType::class)       
+        ->add('save',      SubmitType::class, array(
+            'attr' => array('class' => 'btn btn-primary')))       
         ;
+
     }
     /**
      * {@inheritdoc}
