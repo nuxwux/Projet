@@ -17,11 +17,11 @@
 
     {% elseif (form.vars.name == 'birthdate')  %}
     
-        <div class=" uguihj col-sm-5 form-group">
+        <div class=" col-sm-5 form-group">
 
     {% elseif (form.vars.name == 'reduction')  %}
     
-        <div class=" hello-la-famille form-group">
+        <div class="form-group">
 
         
 
@@ -31,8 +31,9 @@
 
     {% endif %}
         {{- form_label(form) -}}
-        {{- form_errors(form) -}}
+       
         {{- form_widget(form ) -}}
+         {{- form_errors(form) -}}
     </div>
 
 

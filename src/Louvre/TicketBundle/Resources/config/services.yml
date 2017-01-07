@@ -1,4 +1,19 @@
 services:
-#    louvre_ticket.example:
-#        class: Louvre\TicketBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    louvre_ticket.pricer:
+        class: Louvre\TicketBundle\Pricer\LouvrePricer
+
+    louvre_ticket.validator.ticketlimit:                             
+        class: Louvre\TicketBundle\Validator\TicketLimitValidator     
+        arguments: ["@request_stack", "@doctrine.orm.entity_manager"] 
+        tags:
+            - { name: validator.constraint_validator, alias: louvre_ticket_ticketlimit } 
+
+    louvre_ticket.validator.holiday:                             
+        class: Louvre\TicketBundle\Validator\HolidayValidator     
+        arguments: 
+            - "@request_stack"
+            - "@doctrine.orm.entity_manager"
+            - %holidays%
+        tags:
+            - { name: validator.constraint_validator, alias: louvre_ticket_holiday } 
+

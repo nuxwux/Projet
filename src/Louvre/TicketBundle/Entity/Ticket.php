@@ -3,6 +3,9 @@
 namespace Louvre\TicketBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Louvre\TicketBundle\Validator\TicketLimit;
+
 
 /**
  * Ticket
@@ -21,10 +24,14 @@ class Ticket
      */
     private $id;
 
+
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\Length(min=2)
+     * @Assert\Type("string", message="Vous n'avez pas rentré un nom")
+     *
      */
     private $name;
 
@@ -32,6 +39,8 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
+     * @Assert\Length(min=2)
+     * @Assert\Type("string", message="Vous n'avez pas rentré un nom")
      */
     private $firstname;
 
@@ -39,6 +48,8 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Type("string", message="Vous n'avez pas rentré un pays")
      */
     private $country;
 
@@ -46,6 +57,7 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="birthdate", type="datetime")
+     * @Assert\DateTime()
      */
     private $birthdate;
 
@@ -69,16 +81,12 @@ class Ticket
     public function __construct()
     {
      
-            $this->price = "23" + "10";
+        $this->price ="0";
+              
         
     }
 
-    //  public function calculPrice()
-    // {
-    //    $this->price = "23" + "10";
-
-
-    // }
+     
     /**
      * Get id
      *
@@ -196,6 +204,7 @@ class Ticket
     {
         $this->price = $price;
 
+        
         return $this;
     }
 

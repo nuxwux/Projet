@@ -10,4 +10,23 @@ namespace Louvre\TicketBundle\Repository;
  */
 class TicketRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getTicketsAtDate(\Datetime $date) {
+		$qb = $this->createQueryBuilder('a');
+
+		$qb
+			->leftJoin('a.globalticket', 'g')
+			->addSelect('g')
+			
+			->select("COUNT(a) AS nb")
+		    ->where("g.datevisit = :date")
+		    ->setParameter('date', $date)
+		;
+
+		return $qb
+			->getQuery()	
+			->getSingleResult()
+			;
+	}
+
+	
 }

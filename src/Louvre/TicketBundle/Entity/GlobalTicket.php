@@ -4,6 +4,11 @@ namespace Louvre\TicketBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Louvre\TicketBundle\Validator\TicketLimit;
+use Louvre\TicketBundle\Validator\Holiday;
+
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * GlobalTicket
@@ -31,6 +36,9 @@ class GlobalTicket
      * @var \Date
      *
      * @ORM\Column(name="datevisit", type="date")
+     * @TicketLimit()
+     * @Holiday()
+
      */
     private $datevisit;
     /**
@@ -43,6 +51,7 @@ class GlobalTicket
      * @var string
      *
      * @ORM\Column(name="mail", type="string", length=255)
+     * @Assert\Email(message="Vous n'avez pas rentrez une adresse email valide")
      */
     private $mail;
     /**
@@ -53,13 +62,14 @@ class GlobalTicket
     private $name;
     /**
      * @ORM\OneToMany(targetEntity="Louvre\TicketBundle\Entity\Ticket", mappedBy="global_ticket",cascade={"persist"})
+     * @Assert\Valid()
      */
     private $tickets;
 
     public function __construct()
     {
         $this->datecreation = new \Datetime();
-        $this->name = "Visite de Musée";
+        $this->name = "Visite du Louvre";
         $this->tickets = new ArrayCollection();
     }
     /**
@@ -226,4 +236,72 @@ class GlobalTicket
     {
         return $this->tickets;
     }
+
+
+  /**
+   * @Assert\Callback
+   */
+   public function ValidateTuesdaySunday(ExecutionContextInterface $context)
+  {
+      
+       $dateVisit = $this->getDatevisit()->format("w");
+       
+       if ($dateVisit === "0" || $dateVisit === "2") {
+
+       $context
+         ->buildViolation('Le musée est fermé le mardi et le dimanche.') 
+         ->atPath('datevisit')                                                 
+         ->addViolation() 
+         ;
+     }
+  }
+
+ /**
+   * @Assert\Callback
+   */
+   public function ValidatePreviousDays(ExecutionContextInterface $context)
+  {
+      
+       $dateVisit = $this->getDatevisit();
+       $today = new \DateTime();
+       $interval  = $today->diff($dateVisit);
+       
+       if (($interval->invert == "1") && ($interval->invert == "1" && $interval->days != "0")) {
+
+       $context
+         ->buildViolation('Vous ne pouvez pas réservez pour un jour passé.')
+         ->atPath('datevisit')                                                   
+         ->addViolation() 
+       ;
+     }
+ }
+
+ /**
+   * @Assert\Callback
+   */
+   public function ValidateTicketype(ExecutionContextInterface $context)
+  {
+      
+       $ticketype = $this->getTicketype();
+       $dateVisit = $this->getDatevisit();
+       $today = new \DateTime();
+       $interval  = $today->diff($dateVisit);
+       
+
+
+       if ($ticketype == "Journée" && $today->format("H") >= "14" 
+           && ($interval->invert == "1" && $interval->days == "0")) {
+
+       $context
+         ->buildViolation('Vous ne pouvez pas prendre une billet journée après 14h') 
+         ->atPath('ticketype')                                                  
+         ->addViolation()
+       ;
+     }
+  }
+
+
+
+
+
 }

@@ -35,7 +35,7 @@ class TicketingController extends Controller
     public function viewAction($id)
   {
     $em = $this->getDoctrine()->getManager();
-    // Pour récupérer une seule annonce, on utilise la méthode find($id)
+    
     $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
    
     if (null === $globalticket) {
@@ -46,11 +46,21 @@ class TicketingController extends Controller
     ->getRepository('LouvreTicketBundle:Ticket')
     ->findBy(array('globalticket' => $globalticket ))
     ;
-    
+    $pricer = $this->container->get('louvre_ticket.pricer');
+
+    foreach( $listTickets as $ticket) {
+
+        $prix = $pricer->ticketPricer($ticket->getBirthdate(), $globalticket->getTicketype(), $ticket->getReduction());
+        $ticket->setPrice($prix);
+    }
+
     
     return $this->render('LouvreTicketBundle:Ticketing:view.html.twig', array(
       'globalticket'           => $globalticket,
       'listTickets'      => $listTickets,
+      
+      
+      
       
     ));
   }
@@ -58,10 +68,10 @@ class TicketingController extends Controller
 
   public function exempleAction(Request $request )
     {
-        
-        return $this->render('LouvreTicketBundle:Ticketing:exemple.html.twig'
-            , array(
-            
+        $date = date("l");
+
+        return $this->render('LouvreTicketBundle:Ticketing:exemple.html.twig', array(
+            'date' => $date,
             
             ));
     }

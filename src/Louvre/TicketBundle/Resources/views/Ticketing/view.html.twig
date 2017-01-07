@@ -7,24 +7,30 @@
 
 {% block body %}
 
-  <h1> Ma super vue </h1>
- 		<p>Date de création du billet :{{ globalticket.datecreation|date('d/m/Y') }}</p>
-
- 		<h1> {{ globalticket.name }} </h1>
-
- 		<h2>  Billet :{{ globalticket.ticketype }} </h2>
- 		<h2> {{ globalticket.datevisit|date('d/m/Y')}} </h2>
- 		<h2> {{ globalticket.mail}} </h2>
-
- 		 {% for ticket in listTickets %}
- 			<p> {{ticket.name}}, </p>
- 			<p>{{ticket.firstname}}</p>
- 			<p>{{ticket.country}}</p>
- 			<p>{{ticket.birthdate|date('d/m/y')}}</p>
- 			<p>{{ticket.price}}</p>
- 			
- 			
+  <h1> Récapitulatif de votre commande</h1>
+  <div class="well">
+ 		<h3> {{ globalticket.name }} </h3>
+ 		<p>  Billet: {{ globalticket.ticketype }}, le {{ globalticket.datevisit|date('d/m/Y')}} </p>
+ 	
+ 		
+ 		{% for ticket in listTickets %}
+ 			<p> Nom: {{ticket.name}}. Prénom: {{ticket.firstname}} :  {{ticket.price}}€</p>
  		{% endfor %}
+ 		<p> Email: {{ globalticket.mail}} </p>
+ </div>
+
+ <p>
+    <a href="{{ path('louvre_ticket_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la sélection des tickets
+    </a>
+    <a href="#" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-right"></i>
+      Payer votre commande
+    </a>
+    
+  </p>
+
 
 
 

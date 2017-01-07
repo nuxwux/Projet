@@ -1,7 +1,5 @@
 <div class="well well-lg ">
   {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-
-  {# Les erreurs générales du formulaire. #}
   {{ form_errors(form) }}
     <div class="panel panel-primary">
       <div class="panel-heading">
@@ -12,6 +10,7 @@
           <div class="col-md-5"></div>
             <div class="col-md-2">
                 {{ form_widget(form.datevisit, {'attr' : {'class':'form-control datepicker'}}) }}
+                {{ form_errors(form.datevisit)}}
             </div>
          </div>
       </div>
@@ -22,94 +21,92 @@
         <h3 class="panel-title">Sélectionnez votre Billet</h3>
       </div>
          <div class="panel-body">
-           {% form_theme form.ticketype 'LouvreTicketBundle:Forms:test2.html.twig' %}
+           
 
-             {{ form_widget(form.ticketype) }}      
+             {{ form_widget(form.ticketype) }}  
+             {{ form_errors(form.ticketype)}}    
 
          </div>
     </div>
  
-   <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">Remplissez vos infos</h3>
-    </div>
-    <div class="informations">
+    <div class="panel panel-primary">
+     <div class="panel-heading">
+       <h3 class="panel-title">Remplissez vos infos</h3>
+     </div>
+     <div class="informations">
 
-      {% form_theme form.tickets 'LouvreTicketBundle:Forms:test.html.twig' %}
+       {% form_theme form.tickets 'LouvreTicketBundle:Forms:test.html.twig' %}
 
-      {{ form_widget(form.tickets) }}
-      <br>
+       {{ form_widget(form.tickets) }}
+       <br>
   
-      <a href="#" id="add_category" class="btn btn-default">Ajouter un billet</a>
-      <br>
-    </div>
+       <a href="#" id="add_ticket" class="btn btn-default">Ajouter un billet</a>
+       <br>
+     </div>
     </div>
   
 
-<div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Rentrez votre email</h3>
-      </div>
-      <div class="panel-body">             
-        <div class="form-group">
-             {{ form_label(form.mail, "Mail", {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
-            {# Affichage des erreurs pour ce champ précis. #}
-             {{ form_errors(form.mail) }}
-          <div class="col-md-4">
-              {{ form_widget(form.mail,{'attr' : { 'class': 'form-control'}}) }}
+    <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Rentrez votre email</h3>
           </div>
+          <div class="panel-body">             
+            <div class="form-group">
+                 {{ form_label(form.mail, "Mail", {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
+                {# Affichage des erreurs pour ce champ précis. #}
+                 
+              <div class="col-md-4">
+                  {{ form_widget(form.mail,{'attr' : { 'class': 'form-control'}}) }}
+                  {{ form_errors(form.mail) }}
+              </div>
+            </div>
         </div>
     </div>
-</div>
-
-<hr>
  
 
-  <div class="row">
-        {{ form_widget(form.save, {'label': 'Etape suivante'}) }}
-  </div>
+    <div class="row">
+          {{ form_widget(form.save, {'label': 'Etape suivante'}) }}
+    </div>
 
-
-  {# Génération automatique des champs pas encore écrits.
-     Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
-     et tous les champs cachés (type « hidden »). #}
   {{ form_rest(form) }}
-  {# Fermeture de la balise <form> du formulaire HTML #}
   {{ form_end(form) }}
 
 </div>
 
 <script type="text/javascript">
   $(document).ready(function() {
-
-      // $('button').each(function(){
-      //     var elem = $(this);
-      //     elem.replaceWith('<button type="submit" id="louvre_ticketbundle_globalticket_save" name="louvre_ticketbundle_globalticket[save]" class="btn btn-primary btn">Etape suivante</button>');
-      // });
-
-
-      // DatePicker de datevisit
+    $(function() {
       $( ".datepicker" ).datepicker({
-        dateFormat: "dd/mm/yy"
+          altField: "#datepicker",
+          closeText: 'Fermer',
+          prevText: 'Précédent',
+          nextText: 'Suivant',
+          currentText: 'Aujourd\'hui',
+          monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+          monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+          dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+          dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+          dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+          weekHeader: 'Sem.',
+          dateFormat: 'dd/mm/yy'
+          });
       });
 
-    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-    var $container = $('div#louvre_ticketbundle_globalticket_tickets');
 
-    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+    
+    var $container = $('div#louvre_ticketbundle_globalticket_tickets');
     var index = $container.find(':input').length;
 
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-    $('#add_category').click(function(e) {
-      addCategory($container);
-
-      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+    $('#add_ticket').click(function(e) {
+      addTicket($container);
+      e.preventDefault(); 
       return false;
     });
 
-    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+    // On ajoute un premier champ automatiquement
     if (index == 0) {
-      addCategory($container);
+      addTicket($container);
     } else {
       // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
       $container.children('div').each(function() {
@@ -117,41 +114,24 @@
       });
     }
 
-    // La fonction qui ajoute un formulaire CategoryType
-    function addCategory($container) {
-      // Dans le contenu de l'attribut « data-prototype », on remplace :
-      // - le texte "__name__label__" qu'il contient par le label du champ
-      // - le texte "__name__" qu'il contient par le numéro du champ
+    // La fonction qui ajoute un ticket
+    function addTicket($container) {
       var template = $container.attr('data-prototype')
         .replace(/__name__label__/g, 'Billet n°' + (index+1))
         .replace(/__name__/g,        index)
       ;
-
-      // On crée un objet jquery qui contient ce template
       var $prototype = $(template);
-
-      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
       addDeleteLink($prototype);
-
-      // On ajoute le prototype modifié à la fin de la balise <div>
       $container.append($prototype);
-
-      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
       index++;
     }
 
-    // La fonction qui ajoute un lien de suppression d'une catégorie
+    // La fonction qui ajoute un lien de suppression
     function addDeleteLink($prototype) {
-      // Création du lien
       var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
-
-      // Ajout du lien
       $prototype.append($deleteLink);
-
-      // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
       $deleteLink.click(function(e) {
         $prototype.remove();
-
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
       });
