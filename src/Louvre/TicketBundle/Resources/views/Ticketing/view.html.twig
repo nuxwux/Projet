@@ -17,6 +17,8 @@
  			<p> Nom: {{ticket.name}}. Prénom: {{ticket.firstname}} :  {{ticket.price}}€</p>
  		{% endfor %}
  		<p> Email: {{ globalticket.mail}} </p>
+
+    <h3>Prix total : {{ totalPrice }} </h3> 
  </div>
 
  <p>
@@ -24,10 +26,21 @@
       <i class="glyphicon glyphicon-chevron-left"></i>
       Retour à la sélection des tickets
     </a>
-    <a href="#" class="btn btn-default">
+   {#  <a href="#" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-right"></i>
-      Payer votre commande
-    </a>
+      Payer votre commande #}
+
+      <form action="{{ path('louvre_ticket_charge') }}" method="post">
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_EP06MP1wZ3XrYlt3CcaI5GoW"
+            data-description="Paiment des tickets"
+            data-amount="{{ totalPrice }}00"
+            data-locale="auto"
+            data-currency="eur"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
+          </script>
+      </form>
+    {# </a> #}
     
   </p>
 

@@ -9,7 +9,9 @@ louvre_ticket_view:
     defaults:
         _controller: LouvreTicketBundle:Ticketing:view 
 
-louvre_ticket_exemple:
-    path:    /exemple
+
+
+louvre_ticket_charge:
+    path:    /charge
     defaults:
-        _controller: LouvreTicketBundle:Ticketing:exemple 
+        _controller: LouvreTicketBundle:Ticketing:charge

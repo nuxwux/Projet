@@ -47,17 +47,21 @@ class TicketingController extends Controller
     ->findBy(array('globalticket' => $globalticket ))
     ;
     $pricer = $this->container->get('louvre_ticket.pricer');
+    $totalPrice = 0;
 
     foreach( $listTickets as $ticket) {
 
         $prix = $pricer->ticketPricer($ticket->getBirthdate(), $globalticket->getTicketype(), $ticket->getReduction());
         $ticket->setPrice($prix);
+
+        $totalPrice = $totalPrice + $ticket->getPrice();
     }
 
     
     return $this->render('LouvreTicketBundle:Ticketing:view.html.twig', array(
       'globalticket'           => $globalticket,
       'listTickets'      => $listTickets,
+      'totalPrice'     => $totalPrice,
       
       
       
@@ -66,14 +70,33 @@ class TicketingController extends Controller
   }
 
 
-  public function exempleAction(Request $request )
-    {
-        $date = date("l");
+    public function chargeAction(Request $request) {
 
-        return $this->render('LouvreTicketBundle:Ticketing:exemple.html.twig', array(
-            'date' => $date,
+        \Stripe\Stripe::setApiKey("sk_test_T5IcFYxjMSW9bWGIQvQ4DD9M");
+        
+         $token  = $request->get('stripeToken');
+         $stripeinfo = \Stripe\Token::retrieve($token);
+         $email = $stripeinfo->email;
+     
+
+      $customer = \Stripe\Customer::create([
+          'email' => $email,
+          'source'  => $token
+      ]);
+
+      $charge = \Stripe\Charge::create([
+          'customer' => $customer->id,
+          'amount'   => '1000',
+          'currency' => 'eur'
+      ]);
+
+
+
+        return $this->render('LouvreTicketBundle:Ticketing:charge.html.twig', array(
             
             ));
+
+
     }
 
 

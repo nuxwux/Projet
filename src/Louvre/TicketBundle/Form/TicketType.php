@@ -31,7 +31,17 @@ class TicketType extends AbstractType
         ->add('country',   TextType::class, array(
             'label' => ('Pays')))
         ->add('birthdate', BirthdayType::class,array(
-            'label' => ('Date de naissance'))) 
+            'label' => ('Naissance'),
+            'widget' => 'single_text',
+            'format' => 'dd/MM/yyyy',
+            'html5' => 'false',
+            'attr' => ['class' => 'datepicker'],
+            // 'attr' => ['placeholder' => 'JJ/MM/AAAA'],
+
+            )) 
+
+
+
         ->add('reduction', CheckboxType::class, array(
             'required' => false,
             'label_attr' => ['class' => 'bonjour2'],
