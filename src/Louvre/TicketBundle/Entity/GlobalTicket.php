@@ -66,11 +66,30 @@ class GlobalTicket
      */
     private $tickets;
 
+    /**
+     * @ORM\Column(name="totalprice", type="integer")
+     */
+    private $totalprice;
+
+    /**
+     * @ORM\Column(name="paid", type="boolean")
+     */
+    private $paid = false;
+
+    /**
+     * @ORM\Column(name="md5", type="string", length=255)
+     */
+    private $md5;
+
+
     public function __construct()
     {
         $this->datecreation = new \Datetime();
         $this->name = "Visite du Louvre";
         $this->tickets = new ArrayCollection();
+        $this->totalprice = 0;
+        $this->md5 = "0";
+     
     }
     /**
      * Get id
@@ -304,4 +323,76 @@ class GlobalTicket
 
 
 
+
+    /**
+     * Set totalprice
+     *
+     * @param integer $totalprice
+     *
+     * @return GlobalTicket
+     */
+    public function setTotalprice($totalprice)
+    {
+        $this->totalprice = $totalprice;
+
+        return $this;
+    }
+
+    /**
+     * Get totalprice
+     *
+     * @return integer
+     */
+    public function getTotalprice()
+    {
+        return $this->totalprice;
+    }
+
+    /**
+     * Set paid
+     *
+     * @param boolean $paid
+     *
+     * @return GlobalTicket
+     */
+    public function setPaid($paid)
+    {
+        $this->paid = $paid;
+
+        return $this;
+    }
+
+    /**
+     * Get paid
+     *
+     * @return boolean
+     */
+    public function getPaid()
+    {
+        return $this->paid;
+    }
+
+    /**
+     * Set md5
+     *
+     * @param string $md5
+     *
+     * @return GlobalTicket
+     */
+    public function setMd5($md5)
+    {
+        $this->md5 = $md5;
+
+        return $this;
+    }
+
+    /**
+     * Get md5
+     *
+     * @return string
+     */
+    public function getMd5()
+    {
+        return $this->md5;
+    }
 }

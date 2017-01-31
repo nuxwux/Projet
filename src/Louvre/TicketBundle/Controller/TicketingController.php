@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Louvre\TicketBundle\Form\GlobalTicketType;
 use Louvre\TicketBundle\Form\TicketType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Louvre\TicketBundle\Entity\GlobalTicket;
 
 class TicketingController extends Controller
@@ -55,46 +56,87 @@ class TicketingController extends Controller
         $ticket->setPrice($prix);
 
         $totalPrice = $totalPrice + $ticket->getPrice();
+
     }
+     
+     $globalticket->setTotalprice($totalPrice);
+     $id = $globalticket->getId();
+     $md5 = md5($id);
+     $globalticket->setMd5($md5);
+
+     $em->flush();
 
     
     return $this->render('LouvreTicketBundle:Ticketing:view.html.twig', array(
       'globalticket'           => $globalticket,
       'listTickets'      => $listTickets,
       'totalPrice'     => $totalPrice,
-      
-      
-      
-      
     ));
   }
 
 
-    public function chargeAction(Request $request) {
+    public function chargeAction(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
 
         \Stripe\Stripe::setApiKey("sk_test_T5IcFYxjMSW9bWGIQvQ4DD9M");
         
          $token  = $request->get('stripeToken');
          $stripeinfo = \Stripe\Token::retrieve($token);
          $email = $stripeinfo->email;
+         $totalPrice = $globalticket->getTotalprice() * 100 ;
      
-
       $customer = \Stripe\Customer::create([
           'email' => $email,
           'source'  => $token
       ]);
-
-      $charge = \Stripe\Charge::create([
-          'customer' => $customer->id,
-          'amount'   => '1000',
-          'currency' => 'eur'
-      ]);
-
-
-
-        return $this->render('LouvreTicketBundle:Ticketing:charge.html.twig', array(
-            
+      //  Verifier le champ paid ici 
+      if ( $globalticket->getPaid() == 0) {
+         $charge = \Stripe\Charge::create([
+              'customer' => $customer->id,  
+              'amount'   => $totalPrice,
+              'currency' => 'eur'
+          ]);
+          $globalticket->setPaid(1);
+          $em->flush();
+      }
+      return $this->render('LouvreTicketBundle:Ticketing:charge.html.twig', array(  
+      'globalticket'           => $globalticket,  
             ));
+    }
+
+    
+
+   
+    public function pdfAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
+        $listTickets = $em
+          ->getRepository('LouvreTicketBundle:Ticket')
+          ->findBy(array('globalticket' => $globalticket ))
+          ;
+
+        $html = $this->renderView('LouvreTicketBundle:Ticketing:pdf.html.twig', array(
+          'globalticket'           => $globalticket, 
+          'listTickets'            => $listTickets, 
+          ));
+
+        $filename = sprintf('TicketLouvre-%s.pdf', date('Y-m-d'));
+
+
+
+        return  new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            [
+                'Content-Type'        => 'application/pdf',
+                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
+            ]
+
+
+        );
 
 
     }

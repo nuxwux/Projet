@@ -12,6 +12,11 @@ louvre_ticket_view:
 
 
 louvre_ticket_charge:
-    path:    /charge
+    path:    /charge/{id}
     defaults:
         _controller: LouvreTicketBundle:Ticketing:charge
+
+louvre_ticket_pdf:
+    path:    /pdf/{id}
+    defaults:
+        _controller: LouvreTicketBundle:Ticketing:pdf

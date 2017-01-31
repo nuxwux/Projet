@@ -1,0 +1,43 @@
+<html>
+ <head>
+ 	<meta charset="utf-8"/>
+    <link rel="icon" type="image/x-icon" href="favic.ico"/>
+    <title>Pdf ticket</title>
+
+	<style type="text/css">
+	
+	#bloc_page{	
+		width: 900px ;
+		margin: auto;
+	}
+	header{
+		text-align:center;
+	}
+	ul{
+		list-style-type: none;
+	}	
+	
+	</style>
+ </head>
+ <body>
+ 	<div id="bloc_page">
+ 		<header>
+		    <img src="{{ absolute_url(asset('bundles/louvreticket/images/logoLouvre.png')) }}" alt="logo_Louvre" width="250" >
+		    <p> www.louvre.fr </p>
+		    <h1> MUSEE {{ globalticket.ticketype }}</h1>
+		</header>
+		<section>
+		    <p> Date: <b>{{ globalticket.datevisit|date('d/m/Y') }}<b></p>
+		    <p> Prix total : <b>{{ globalticket.totalprice}} euros<b></p>
+		    <p> Visiteurs : </p>
+		    <ul>
+		    {% for ticket in listTickets %}
+		    		<li> -<b>{{ticket.firstname}} {{ticket.name}}<b> </li>		    	
+		    {% endfor %}
+		    </ul>
+
+		    <p> Code de reservation: <b>{{globalticket.md5}}<b></p>
+    	</section>
+    </div>
+ </body>
+</html>
