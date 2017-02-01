@@ -6,9 +6,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('bundles/louvreticket/images/favicon.ico') }}" />  
     <title>{% block title %}Louvres Billetterie{% endblock %}</title>
 
-    {% block stylesheets %}
-      {# On charge le CSS de bootstrap depuis le site directement #}
-      
+    {% block stylesheets %}      
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
       <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
@@ -16,9 +14,6 @@
       <link rel="stylesheet" href="/resources/demos/style.css">
       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      
-
-
     {% endblock %}
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -31,13 +26,12 @@
         .jumbotron { 
             background: #222222;
         }
-        
         .informations {
             padding:5px;
         }
         @media all and (min-width: 1200px)
         {
-          .bonjour2 {
+          #checkbox{
             position: relative;
             right: -10px;
             top: 30px;
@@ -45,35 +39,28 @@
         }
         @media all and (min-width: 992px) and (max-width: 1200px)
         {
-          .bonjour2 {
+           #checkbox {
             position: relative;
             right: -10px;
             top: 30px;
-
           }
-
         }
         @media all and (min-width: 768px) and (max-width: 992px)
         {
-          .bonjour2 {
+          #checkbox {
             position: relative;
             right: -10px;
             top: 30px;
-
           }
-
         }
         @media all and (max-width: 768px)
         {
-          .bonjour2 {
+          #checkbox {
             position: relative;
             right: -20px;
             top: 0px;
-
           }
-
         }
-
     </style>
   </head>
 
@@ -85,19 +72,12 @@
           <img src="{{ asset('bundles/louvreticket/images/logoLouvre.png') }}" alt="logo_Louvre" width="250" ></a>
         <h1 style="color:white;"> Billetterie Officielle </h1>
       </div>
-       
      </header>
 
-    <div class="row">
-      
-
-      {% block body %}
-       {% endblock %}
-
-      
-    </div>
-
-    
+      <div class="row">
+        {% block body %}
+        {% endblock %}
+      </div>
 
     <footer class="row">
       <div class="col-lg-12 text-center">
@@ -106,12 +86,8 @@
     </footer>
   </div>
 
-  {% block javascripts %}
-    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
-    
+  {% block javascripts %}  
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  
-  
   {% endblock %}
 
   </body>

@@ -8,44 +8,19 @@
 
   <h1> Formulaire </h1>
   {{ include("LouvreTicketBundle:Ticketing:form.html.twig") }}
-
   <br>
   <br>
   <br>
-
-  {# <div class="panel panel-danger">
-    <div class="panel-heading">
-      <h3 class="panel-title">Récapitulatif de votre commande</h3>
-    </div>
-      <div class="panel-body">
-      	<p> Salut le compagnie !</p>
-        <p> </p>
-        
-      	</div>
-       
-      </div>
-  </div> #}
-
-
-
 {% endblock %}
+
+
+
   {% block javascripts %}
     {{ parent()}}
-    
+
     <script type="text/javascript">
     	$(document).ready(function() {
-    		  var i = 1;
-              $(".namehello").blur(function() {
-              	if (i === 1) {
-              		var text = $(".namehello").val();
-              		$("#vide").remove();
-              		$("#panier").append("<p>" + text + "</p>");
-              		
-              		i++;
-              	}
-              })
-            });
-    
+               });
   	</script>
   
   {% endblock %}

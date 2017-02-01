@@ -23,7 +23,6 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
         ->add('name',      TextType::class, array(
             'label' => ('Nom')))
         ->add('firstname', TextType::class, array(
@@ -36,15 +35,10 @@ class TicketType extends AbstractType
             'format' => 'dd/MM/yyyy',
             'html5' => 'false',
             'attr' => ['class' => 'datepicker'],
-            // 'attr' => ['placeholder' => 'JJ/MM/AAAA'],
-
             )) 
-
-
-
         ->add('reduction', CheckboxType::class, array(
             'required' => false,
-            'label_attr' => ['class' => 'bonjour2'],
+            'label_attr' => ['id' => 'checkbox'],
             'label' => ('Tarif réduit')
         ))
 

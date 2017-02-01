@@ -21,11 +21,8 @@
         <h3 class="panel-title">Sélectionnez votre Billet</h3>
       </div>
          <div class="panel-body">
-           
-
              {{ form_widget(form.ticketype) }}  
              {{ form_errors(form.ticketype)}}    
-
          </div>
     </div>
  
@@ -52,9 +49,7 @@
           </div>
           <div class="panel-body">             
             <div class="form-group">
-                 {{ form_label(form.mail, "Mail", {'label_attr': {'class': 'col-sm-1 control-label'}}) }}
-                {# Affichage des erreurs pour ce champ précis. #}
-                 
+                 {{ form_label(form.mail, "Mail", {'label_attr': {'class': 'col-sm-1 control-label'}}) }}                 
               <div class="col-md-4">
                   {{ form_widget(form.mail,{'attr' : { 'class': 'form-control'}}) }}
                   {{ form_errors(form.mail) }}
@@ -79,6 +74,7 @@
       $( ".datepicker" ).datepicker({
           changeMonth: true,
           changeYear: true,
+          yearRange: "1940:2020",
           altField: "#datepicker",
           closeText: 'Fermer',
           prevText: 'Précédent',
@@ -94,14 +90,29 @@
           });
       });
 
-
-    
     var $container = $('div#louvre_ticketbundle_globalticket_tickets');
     var index = $container.find(':input').length;
 
-    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     $('#add_ticket').click(function(e) {
       addTicket($container);
+      $( ".datepicker" ).datepicker({
+          changeMonth: true,
+          changeYear: true,
+          yearRange: "1940:2020",
+          altField: "#datepicker",
+          closeText: 'Fermer',
+          prevText: 'Précédent',
+          nextText: 'Suivant',
+          currentText: 'Aujourd\'hui',
+          monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+          monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+          dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+          dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+          dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+          weekHeader: 'Sem.',
+          dateFormat: 'dd/mm/yy'
+          });
+
       e.preventDefault(); 
       return false;
     });
@@ -110,7 +121,6 @@
     if (index == 0) {
       addTicket($container);
     } else {
-      // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
       $container.children('div').each(function() {
         addDeleteLink($(this));
       });
