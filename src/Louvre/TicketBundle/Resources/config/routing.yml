@@ -16,6 +16,11 @@ louvre_ticket_charge:
     defaults:
         _controller: LouvreTicketBundle:Ticketing:charge
 
+louvre_ticket_confirm:
+    path:    /confirm/{id}
+    defaults:
+        _controller: LouvreTicketBundle:Ticketing:confirm
+
 louvre_ticket_pdf:
     path:    /pdf/{id}
     defaults:

@@ -101,9 +101,22 @@ class TicketingController extends Controller
           $globalticket->setPaid(1);
           $em->flush();
       }
-      return $this->render('LouvreTicketBundle:Ticketing:charge.html.twig', array(  
+       $this->redirectToRoute("confirmAction", $id); // a retester
+    }
+
+    public function confirmAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
+
+        // if
+
+        return $this->render('LouvreTicketBundle:Ticketing:confirm.html.twig', array(  
       'globalticket'           => $globalticket,  
             ));
+
+
+
     }
 
     
