@@ -70,8 +70,11 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $(function() {
-      $( ".datepicker" ).datepicker({
+
+    var holidays = ["01-05","01-11","25-12"]
+    
+    var options = {
+          minDate: -0,
           changeMonth: true,
           changeYear: true,
           yearRange: "1940:2020",
@@ -86,32 +89,32 @@
           dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
           dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
           weekHeader: 'Sem.',
-          dateFormat: 'dd/mm/yy'
-          });
+          dateFormat: 'dd/mm/yy',
+          beforeShowDay: function(date){
+            var day = date.getDay();
+            var string = jQuery.datepicker.formatDate('dd-mm', date);
+            return [ holidays.indexOf(string) == -1 && day != 0 && day != 2]
+           }
+          };
+    
+
+
+    $(function() {
+      $( ".datepicker" ).datepicker(options);
+      options.minDate = null;
+      $( ".datepicker2" ).datepicker(options);
       });
+
 
     var $container = $('div#louvre_ticketbundle_globalticket_tickets');
     var index = $container.find(':input').length;
+    
 
     $('#add_ticket').click(function(e) {
-      addTicket($container);
-      $( ".datepicker" ).datepicker({
-          changeMonth: true,
-          changeYear: true,
-          yearRange: "1940:2020",
-          altField: "#datepicker",
-          closeText: 'Fermer',
-          prevText: 'Précédent',
-          nextText: 'Suivant',
-          currentText: 'Aujourd\'hui',
-          monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-          monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-          dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-          dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-          dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-          weekHeader: 'Sem.',
-          dateFormat: 'dd/mm/yy'
-          });
+      addTicket($container);   
+      
+      
+      $( ".datepicker2" ).datepicker(options);
 
       e.preventDefault(); 
       return false;

@@ -9,6 +9,8 @@ parameters:
     locale: fr
     holidays: ["01-05","01-11","25-12"]
 
+
+
 framework:
     #esi:             ~
     #translator:      { fallbacks: ["%locale%"] }

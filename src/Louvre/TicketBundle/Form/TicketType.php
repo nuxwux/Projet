@@ -34,7 +34,7 @@ class TicketType extends AbstractType
             'widget' => 'single_text',
             'format' => 'dd/MM/yyyy',
             'html5' => 'false',
-            'attr' => ['class' => 'datepicker'],
+            'attr' => ['class' => 'datepicker2'],
             )) 
         ->add('reduction', CheckboxType::class, array(
             'required' => false,

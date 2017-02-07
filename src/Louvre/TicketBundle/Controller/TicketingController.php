@@ -66,11 +66,14 @@ class TicketingController extends Controller
 
      $em->flush();
 
+     $public_key = $this->getParameter('stripe_public_key');
+
     
     return $this->render('LouvreTicketBundle:Ticketing:view.html.twig', array(
       'globalticket'           => $globalticket,
-      'listTickets'      => $listTickets,
-      'totalPrice'     => $totalPrice,
+      'listTickets'            => $listTickets,
+      'totalPrice'             => $totalPrice,
+      'stripe_public_key'      => $public_key,
     ));
   }
 
@@ -80,7 +83,8 @@ class TicketingController extends Controller
         $em = $this->getDoctrine()->getManager();
         $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
 
-        \Stripe\Stripe::setApiKey("sk_test_T5IcFYxjMSW9bWGIQvQ4DD9M");
+        // \Stripe\Stripe::setApiKey("sk_test_T5IcFYxjMSW9bWGIQvQ4DD9M");
+        \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
         
          $token  = $request->get('stripeToken');
          $stripeinfo = \Stripe\Token::retrieve($token);
@@ -101,8 +105,8 @@ class TicketingController extends Controller
           $globalticket->setPaid(1);
           $em->flush();
       }
-       $this->redirectToRoute("confirmAction", $id); // a retester
-    }
+       return $this->redirectToRoute('louvre_ticket_confirm', array('id' => $id)); 
+    } 
 
     public function confirmAction($id)
     {
@@ -112,7 +116,7 @@ class TicketingController extends Controller
         // if
 
         return $this->render('LouvreTicketBundle:Ticketing:confirm.html.twig', array(  
-      'globalticket'           => $globalticket,  
+          'globalticket'           => $globalticket,  
             ));
 
 
@@ -140,7 +144,7 @@ class TicketingController extends Controller
 
 
 
-        return  new Response(
+        return  new Response( // a mettre surement dans swiftmailer, enregister dans var cache
             $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
             200,
             [
