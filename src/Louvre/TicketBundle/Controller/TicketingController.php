@@ -83,7 +83,7 @@ class TicketingController extends Controller
         $em = $this->getDoctrine()->getManager();
         $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
 
-        // \Stripe\Stripe::setApiKey("sk_test_T5IcFYxjMSW9bWGIQvQ4DD9M");
+    
         \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
         
          $token  = $request->get('stripeToken');
@@ -95,7 +95,7 @@ class TicketingController extends Controller
           'email' => $email,
           'source'  => $token
       ]);
-      //  Verifier le champ paid ici 
+     
       if ( $globalticket->getPaid() == 0) {
          $charge = \Stripe\Charge::create([
               'customer' => $customer->id,  
@@ -118,9 +118,6 @@ class TicketingController extends Controller
         return $this->render('LouvreTicketBundle:Ticketing:confirm.html.twig', array(  
           'globalticket'           => $globalticket,  
             ));
-
-
-
     }
 
     
