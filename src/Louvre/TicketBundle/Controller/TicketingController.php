@@ -107,7 +107,7 @@ class TicketingController extends Controller
           ]);
           $globalticket->setPaid(1);
           $em->flush();
-          $mailer->sendEmail($mail)
+          $mailer->sendEmail($mail, $id)
 
       }
        return $this->redirectToRoute('louvre_ticket_confirm', array('id' => $id)); 
@@ -130,37 +130,28 @@ class TicketingController extends Controller
     
 
    
-    public function pdfAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
-        $listTickets = $em
-          ->getRepository('LouvreTicketBundle:Ticket')
-          ->findBy(array('globalticket' => $globalticket ))
-          ;
+    // public function pdfAction($id)
+    // {
+    //     $em = $this->getDoctrine()->getManager();
+    //     $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
+    //     $listTickets = $em
+    //       ->getRepository('LouvreTicketBundle:Ticket')
+    //       ->findBy(array('globalticket' => $globalticket ))
+    //       ;
 
-        $html = $this->renderView('LouvreTicketBundle:Ticketing:pdf.html.twig', array(
-          'globalticket'           => $globalticket, 
-          'listTickets'            => $listTickets, 
-          ));
+    //     $html = $this->renderView('LouvreTicketBundle:Ticketing:pdf.html.twig', array(
+    //       'globalticket'           => $globalticket, 
+    //       'listTickets'            => $listTickets, 
+    //       ));
 
-        $filename = sprintf('TicketLouvre-%s.pdf', date('Y-m-d'));
+    //     $filename = sprintf('TicketLouvre-%s.pdf', date('Y-m-d'));
 
+        
+    //     $this->get('knp_snappy.pdf')->generateFromHtml($html, "var/cache/$filename")
 
-
-        return  new Response( // a mettre surement dans swiftmailer, enregister dans var cache
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html, , 'var/cache/bill-123.pdf'),
-            200,
-            [
-                'Content-Type'        => 'application/pdf',
-                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
-            ]
-
-
-        );
-
-
-    }
+    //    return "var/cache/$filename";
+            
+    // }
 
 
 }

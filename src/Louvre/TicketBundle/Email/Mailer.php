@@ -1,6 +1,4 @@
 <?php
-
-
 namespace Louvre\TicketBundle\Email;
 
 
@@ -16,8 +14,26 @@ class Mailer
     $this->mailer = $mailer;
   }
 
-  public function sendEmail($email)
+  public function sendEmail($email, $id )
   {
+      $em = $this->getDoctrine()->getManager();
+        $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
+        $listTickets = $em
+          ->getRepository('LouvreTicketBundle:Ticket')
+          ->findBy(array('globalticket' => $globalticket ))
+          ;
+
+        $html = $this->renderView('LouvreTicketBundle:Ticketing:pdf.html.twig', array(
+          'globalticket'           => $globalticket, 
+          'listTickets'            => $listTickets, 
+          ));
+
+        $filename = sprintf('TicketLouvre-%s.pdf', date('Y-m-d'));
+
+        
+        $this->get('knp_snappy.pdf')->generateFromHtml($html, "var/cache/$filename")
+
+
      $message = \Swift_Message::newInstance()
         ->setSubject("Confirmation d'achat de vos tickets")
         ->setFrom('louvre@louvre.fr')
@@ -41,7 +57,8 @@ class Mailer
             'text/plain'
         )
         */
-        ->attach(Swift_Attachment::fromPath('my-document.pdf'))
+
+        ->attach(Swift_Attachment::fromPath("var/cache/$filename"))
     ;
     $this->get('mailer')->send($message);
 }
