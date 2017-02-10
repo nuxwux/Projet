@@ -21,4 +21,7 @@ services:
       class: Louvre\TicketBundle\Email\Mailer
       arguments:
           - "@mailer"
+          - "@doctrine.orm.entity_manager"
+          - "@templating"
+          - "@knp_snappy.pdf"
 

@@ -1,5 +1,6 @@
 <?php
 namespace Louvre\TicketBundle\Email;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 class Mailer
@@ -9,29 +10,34 @@ class Mailer
    */
   private $mailer;
 
-  public function __construct(\Swift_Mailer $mailer)
+  
+
+  public function __construct(\Swift_Mailer $mailer, EntityManagerInterface $em, $template , $pdf)
   {
     $this->mailer = $mailer;
+    $this->em   = $em;
+    $this->template = $template;
+    $this->pdf = $pdf;
   }
 
   public function sendEmail($email, $id )
   {
-      $em = $this->getDoctrine()->getManager();
-        $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
-        $listTickets = $em
+     
+        $globalticket = $this->em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
+        $listTickets = $this->em
           ->getRepository('LouvreTicketBundle:Ticket')
           ->findBy(array('globalticket' => $globalticket ))
           ;
 
-        $html = $this->renderView('LouvreTicketBundle:Ticketing:pdf.html.twig', array(
+        $html = $this->template->render('LouvreTicketBundle:Ticketing:pdf.html.twig', array(
           'globalticket'           => $globalticket, 
           'listTickets'            => $listTickets, 
           ));
 
-        $filename = sprintf('TicketLouvre-%s.pdf', date('Y-m-d'));
+        $filename = sprintf('TicketLouvre-%s.pdf', date('U'));
 
         
-        $this->get('knp_snappy.pdf')->generateFromHtml($html, "var/cache/$filename");
+        $this->pdf->generateFromHtml($html, "var/cache/$filename");
 
 
      $message = \Swift_Message::newInstance()
@@ -58,7 +64,8 @@ class Mailer
         )
         */
 
-        ->attach(Swift_Attachment::fromPath("var/cache/$filename"))
+        ->attach(\Swift_Attachment::fromPath("var/cache/$filename"))
     ;
-    $this->get('mailer')->send($message);
+    $this->mailer->send($message);
+}
 }
