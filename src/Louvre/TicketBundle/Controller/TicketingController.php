@@ -107,7 +107,7 @@ class TicketingController extends Controller
           ]);
           $globalticket->setPaid(1);
           $em->flush();
-          $mailer->sendEmail($mail, $id)
+          $mailer->sendEmail($mail, $id);
 
       }
        return $this->redirectToRoute('louvre_ticket_confirm', array('id' => $id)); 
