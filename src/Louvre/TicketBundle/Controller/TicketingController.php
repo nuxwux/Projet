@@ -75,13 +75,16 @@ class TicketingController extends Controller
       'totalPrice'             => $totalPrice,
       'stripe_public_key'      => $public_key,
     ));
-  }
+    }
+
 
 
     public function chargeAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getManager();
         $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
+        $mail = $globalticket->getMail();
+        $mailer = $this->container->get('louvre_ticket.email.mailer');
 
     
         \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
@@ -104,9 +107,13 @@ class TicketingController extends Controller
           ]);
           $globalticket->setPaid(1);
           $em->flush();
+          $mailer->sendEmail($mail)
+
       }
        return $this->redirectToRoute('louvre_ticket_confirm', array('id' => $id)); 
     } 
+
+
 
     public function confirmAction($id)
     {
@@ -142,7 +149,7 @@ class TicketingController extends Controller
 
 
         return  new Response( // a mettre surement dans swiftmailer, enregister dans var cache
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html, , 'var/cache/bill-123.pdf'),
             200,
             [
                 'Content-Type'        => 'application/pdf',

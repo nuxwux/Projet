@@ -16,4 +16,9 @@ services:
             - %holidays%
         tags:
             - { name: validator.constraint_validator, alias: louvre_ticket_holiday } 
+    
+    louvre_ticket.email.mailer:
+      class: Louvre\TicketBundle\Email\Mailer
+      arguments:
+          - "@mailer"
 
