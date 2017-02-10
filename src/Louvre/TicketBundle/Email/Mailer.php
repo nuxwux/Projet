@@ -31,7 +31,7 @@ class Mailer
         $filename = sprintf('TicketLouvre-%s.pdf', date('Y-m-d'));
 
         
-        $this->get('knp_snappy.pdf')->generateFromHtml($html, "var/cache/$filename")
+        $this->get('knp_snappy.pdf')->generateFromHtml($html, "var/cache/$filename");
 
 
      $message = \Swift_Message::newInstance()
