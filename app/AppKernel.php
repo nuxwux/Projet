@@ -17,6 +17,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Louvre\TicketBundle\LouvreTicketBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new winzou\CacheBundle\winzouCacheBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

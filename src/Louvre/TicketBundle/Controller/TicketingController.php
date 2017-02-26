@@ -15,6 +15,7 @@ class TicketingController extends Controller
     {
     	$globalticket = new GlobalTicket();
     	$form = $this->get('form.factory')->create(GlobalTicketType::class, $globalticket);
+   
 
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
@@ -22,10 +23,13 @@ class TicketingController extends Controller
               
 		      $em->persist($globalticket);
 		      $em->flush();
+         
+   
 
 		      return $this->redirectToRoute('louvre_ticket_view', array('id' => $globalticket->getId()));
 
 		 }
+
 		return $this->render('LouvreTicketBundle:Ticketing:index.html.twig'
 			, array(
 			'form' => $form->createView(),
@@ -85,6 +89,7 @@ class TicketingController extends Controller
         $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
         $mail = $globalticket->getMail();
         $mailer = $this->container->get('louvre_ticket.email.mailer');
+        $pdf = $this->container->get('louvre_ticket.pdf.pdfbuilder');
 
     
         \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
@@ -98,6 +103,7 @@ class TicketingController extends Controller
           'email' => $email,
           'source'  => $token
       ]);
+
      
       if ( $globalticket->getPaid() == 0) {
          $charge = \Stripe\Charge::create([
@@ -107,9 +113,14 @@ class TicketingController extends Controller
           ]);
           $globalticket->setPaid(1);
           $em->flush();
-          $mailer->sendEmail($mail, $id);
+          
 
       }
+      $pdf->buildPdf($id);
+      $mailer->sendEmail($mail);
+      // dump($mailer);
+      // die();
+      
        return $this->redirectToRoute('louvre_ticket_confirm', array('id' => $id)); 
     } 
 
