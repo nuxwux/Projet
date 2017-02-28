@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Louvre\TicketBundle\Validator\TicketLimit;
 use Louvre\TicketBundle\Validator\Holiday;
 
+
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
@@ -68,6 +69,9 @@ class GlobalTicket
 
     /**
      * @ORM\Column(name="totalprice", type="integer")
+     * @Assert\NotEqualTo(
+     *     value = 0
+     * )
      */
     private $totalprice;
 

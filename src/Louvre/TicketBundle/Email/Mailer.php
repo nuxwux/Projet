@@ -16,16 +16,16 @@ class Mailer
    
   }
 
-  public function sendEmail($email )
+  public function sendEmail($email, $filename )
   {
-
+    $dir = __DIR__.'../../../../../var/cache/';
 
      $message = \Swift_Message::newInstance()
         ->setSubject("Confirmation d'achat de vos tickets")
         ->setFrom('louvre@louvre.fr')
         ->setTo($email)
         ->setBody('Voici en pièce jointe vos tickets')
-        // ->attach(\Swift_Attachment::fromPath("var/cache/$filename"))
+        ->attach(\Swift_Attachment::fromPath($dir.$filename))
     ;
     $this->mailer->send($message);
     // dump($this->mailer);

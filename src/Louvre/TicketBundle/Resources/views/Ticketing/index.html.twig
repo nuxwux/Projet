@@ -5,8 +5,40 @@
 {% endblock %}
 
 {% block body %}
+  <h1> Grille des tarifs 2017 </h1>
+  <section class="col-sm-12">
+          <table class="table table-bordered table-striped table-condensed">
+            <thead>
+              <tr>
+                <th>Prix</th>
+                <th>Type de tarifs</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>16 €<b></td>
+                <td><b>Normal</b>: à partir de 12 ans</td>
+              </tr>
+              <tr>
+                <td><b>8 €<b></td>
+                <td><b>Enfant</b>: de 4 à 12 ans (gratuit pour les enfants de moins de 4 ans)</td>
+              </tr>
+              <tr>
+                <td><b>12 €<b></td>
+                <td><b>Senior</b>: à partir de 60 ans</td>
+              </tr>
+              <tr>
+                <td><b>10 €<b></td>
+                <td><b>Réduit</b>: tarif accordé aux étudiants, employé du musée, militaire...<br>
+                  <b> Un justificatif vous sera demandé si vous bénéficiez d'un tarif réduit. <b>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </section>
 
-  <h1> Formulaire </h1>
+  <h1> Selection des Billets </h1>
   {{ include("LouvreTicketBundle:Ticketing:form.html.twig") }}
   <br>
   <br>

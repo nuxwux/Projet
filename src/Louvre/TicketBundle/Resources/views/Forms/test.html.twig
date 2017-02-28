@@ -1,7 +1,4 @@
 {%- block form_row -%}
-   
-
-    
     
     {% if (form.vars.name == 'name')  %}
 
@@ -23,8 +20,6 @@
     
         <div class="form-group">
 
-        
-
    {% else   %}
    		<div>
 
@@ -35,12 +30,6 @@
         {{- form_widget(form ) -}}
          {{- form_errors(form) -}}
     </div>
-
-
-   
-
-
-
  
 {%- endblock form_row -%}
 

@@ -116,8 +116,11 @@ class TicketingController extends Controller
           
 
       }
-      $pdf->buildPdf($id);
-      $mailer->sendEmail($mail);
+      
+
+      $filename = $pdf->buildPdf($id);
+
+      $mailer->sendEmail($mail, $filename);
       // dump($mailer);
       // die();
       

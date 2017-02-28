@@ -33,12 +33,12 @@
      <div class="informations">
 
        {% form_theme form.tickets 'LouvreTicketBundle:Forms:test.html.twig' %}
-
        {{ form_widget(form.tickets) }}
+        
        <br>
-  
        <a href="#" id="add_ticket" class="btn btn-default">Ajouter un billet</a>
        <br>
+       
      </div>
     </div>
   
@@ -102,8 +102,20 @@
     $(function() {
       $( ".datepicker" ).datepicker(options);
       options.minDate = null;
+      options.beforeShowDay = null;
       $( ".datepicker2" ).datepicker(options);
       });
+
+
+    $(":checkbox").change(function(e) {
+        if (this.checked) {
+            $("#aide").show();
+        } else {
+            $("#aide").hide();
+        }
+    });
+
+  
 
 
     var $container = $('div#louvre_ticketbundle_globalticket_tickets');
@@ -143,7 +155,7 @@
 
     // La fonction qui ajoute un lien de suppression
     function addDeleteLink($prototype) {
-      var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+      var $deleteLink = $("<a href='#'' class='btn btn-danger'>Supprimer</a>");
       $prototype.append($deleteLink);
       $deleteLink.click(function(e) {
         $prototype.remove();

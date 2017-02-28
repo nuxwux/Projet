@@ -30,7 +30,4 @@ monolog:
         #    type:   chromephp
         #    level:  info
 
-swiftmailer:
-    transport: gmail
-    username: ludovic.siennat@gmail.com 
-    password: 1lasagesse123
+
