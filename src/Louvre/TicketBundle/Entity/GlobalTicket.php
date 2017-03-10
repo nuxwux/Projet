@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Louvre\TicketBundle\Validator\TicketLimit;
 use Louvre\TicketBundle\Validator\Holiday;
+use Louvre\TicketBundle\Entity\Ticket;
 
 
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -39,7 +40,6 @@ class GlobalTicket
      * @ORM\Column(name="datevisit", type="date")
      * @TicketLimit()
      * @Holiday()
-
      */
     private $datevisit;
     /**
@@ -69,9 +69,6 @@ class GlobalTicket
 
     /**
      * @ORM\Column(name="totalprice", type="integer")
-     * @Assert\NotEqualTo(
-     *     value = 0
-     * )
      */
     private $totalprice;
 
@@ -288,6 +285,9 @@ class GlobalTicket
        $dateVisit = $this->getDatevisit();
        $today = new \DateTime();
        $interval  = $today->diff($dateVisit);
+
+      //   dump($interval);
+      // die();
        
        if (($interval->invert == "1") && ($interval->invert == "1" && $interval->days != "0")) {
 
@@ -309,7 +309,7 @@ class GlobalTicket
        $dateVisit = $this->getDatevisit();
        $today = new \DateTime();
        $interval  = $today->diff($dateVisit);
-       
+      
 
 
        if ($ticketype == "Journée" && $today->format("H") >= "14" 
@@ -323,10 +323,43 @@ class GlobalTicket
      }
   }
 
+   /**
+   * @Assert\Callback
+   */
+   public function ValidateBirthdate(ExecutionContextInterface $context)
+  {
+      
+     
+       $var = $this->tickets;
+       $var2 = $var->toArray();
+       $today = new \DateTime();
+       $child = false;
+       $adult = false;
+       
+     
+       foreach($var2 as $value) {        
+        $birthdate = $value->getBirthdate();
+        $interval = $today->diff($birthdate)->y;
+                
+        if ($interval >= "4") {
+            $adult = true;
+           
+        } else {
+            $child = true;
+        }
+       }
 
+       if ($adult && $child) {
 
-
-
+       } else if($child) {
+         $context
+         ->buildViolation('Un enfant de moins de 4ans ne peut pas acheter un billet seul.') 
+         ->atPath('tickets')                                                  
+         ->addViolation()
+       ;
+       }
+       
+  }
 
     /**
      * Set totalprice

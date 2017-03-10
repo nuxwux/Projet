@@ -31,10 +31,11 @@
       <form action="{{ path('louvre_ticket_charge', {'id': globalticket.id }) }}" method="post">
           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="{{ stripe_public_key }}"
-            data-description="Paiment des tickets"
+            data-description="Paiement des tickets"
             data-amount="{{ globalticket.totalprice }}00"
             data-locale="auto"
             data-currency="eur"
+            data-label="Paiement par carte"
             data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
           </script>
       </form>

@@ -5,6 +5,7 @@ namespace Louvre\TicketBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Louvre\TicketBundle\Validator\TicketLimit;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 
 /**
@@ -267,4 +268,28 @@ class Ticket
     {
         return $this->reduction;
     }
+
+     /**
+   * @Assert\Callback
+   */
+//    public function ValidatePreviousDays(ExecutionContextInterface $context)
+//   {
+      
+       
+      
+//        $birthdate = $this->getBirthdate();
+//         dump($birthdate);
+//       die();
+       
+//        if (($interval->invert == "1") && ($interval->invert == "1" && $interval->days != "0")) {
+
+//        $context
+//          ->buildViolation('Vous ne pouvez pas réservez pour un jour passé.')
+//          ->atPath('datevisit')                                                   
+//          ->addViolation() 
+//        ;
+//      }
+//  }
 }
+
+
