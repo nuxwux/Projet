@@ -30,7 +30,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\Length(min=2)
+     * @Assert\Length(min=2, minMessage="Nom trop court, minimum 2 lettres")
      * @Assert\Type("string", message="Vous n'avez pas rentré un nom")
      *
      */
@@ -269,27 +269,7 @@ class Ticket
         return $this->reduction;
     }
 
-     /**
-   * @Assert\Callback
-   */
-//    public function ValidatePreviousDays(ExecutionContextInterface $context)
-//   {
-      
-       
-      
-//        $birthdate = $this->getBirthdate();
-//         dump($birthdate);
-//       die();
-       
-//        if (($interval->invert == "1") && ($interval->invert == "1" && $interval->days != "0")) {
 
-//        $context
-//          ->buildViolation('Vous ne pouvez pas réservez pour un jour passé.')
-//          ->atPath('datevisit')                                                   
-//          ->addViolation() 
-//        ;
-//      }
-//  }
 }
 
 
