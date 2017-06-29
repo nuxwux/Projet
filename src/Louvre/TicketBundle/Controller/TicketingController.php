@@ -86,7 +86,7 @@ class TicketingController extends Controller
     public function chargeAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getManager();
-        $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
+        $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id); 
         $mail = $globalticket->getMail();
         $mailer = $this->container->get('louvre_ticket.email.mailer');
         $pdf = $this->container->get('louvre_ticket.pdf.pdfbuilder');
@@ -121,8 +121,7 @@ class TicketingController extends Controller
       $filename = $pdf->buildPdf($id);
 
       $mailer->sendEmail($mail, $filename);
-      // dump($mailer);
-      // die();
+      
       
        return $this->redirectToRoute('louvre_ticket_confirm', array('id' => $id)); 
     } 
@@ -144,29 +143,7 @@ class TicketingController extends Controller
     
 
    
-    // public function pdfAction($id)
-    // {
-    //     $em = $this->getDoctrine()->getManager();
-    //     $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
-    //     $listTickets = $em
-    //       ->getRepository('LouvreTicketBundle:Ticket')
-    //       ->findBy(array('globalticket' => $globalticket ))
-    //       ;
-
-    //     $html = $this->renderView('LouvreTicketBundle:Ticketing:pdf.html.twig', array(
-    //       'globalticket'           => $globalticket, 
-    //       'listTickets'            => $listTickets, 
-    //       ));
-
-    //     $filename = sprintf('TicketLouvre-%s.pdf', date('Y-m-d'));
-
-        
-    //     $this->get('knp_snappy.pdf')->generateFromHtml($html, "var/cache/$filename")
-
-    //    return "var/cache/$filename";
-            
-    // }
-
+    
 
 }
  

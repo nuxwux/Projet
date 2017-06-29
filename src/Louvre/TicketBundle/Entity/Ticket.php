@@ -40,7 +40,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
-     * @Assert\Length(min=2)
+     * @Assert\Length(min=2, minMessage="Prénom trop court, minimum 2 lettres")
      * @Assert\Type("string", message="Vous n'avez pas rentré un nom")
      */
     private $firstname;
