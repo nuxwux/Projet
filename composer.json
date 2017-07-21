@@ -1,5 +1,6 @@
 {
     "name": "nux/projet-symfony",
+    "description": "My nice json file",
     "license": "proprietary",
     "type": "project",
     "autoload": {
