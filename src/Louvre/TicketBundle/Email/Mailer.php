@@ -28,7 +28,6 @@ class Mailer
         ->attach(\Swift_Attachment::fromPath($dir.$filename))
     ;
     $this->mailer->send($message);
-    // dump($this->mailer);
-    //  die();
+
 }
 }

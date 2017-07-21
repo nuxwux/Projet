@@ -14,21 +14,21 @@ class HolidayValidator extends ConstraintValidator
 
 
   private $requestStack;
-  private $em;
+
   private $holidays;
 
   // Les arguments déclarés dans la définition du service arrivent au constructeur
   // On doit les enregistrer dans l'objet pour pouvoir s'en resservir dans la méthode validate()
-  public function __construct(RequestStack $requestStack, EntityManagerInterface $em, $holidays)
+  public function __construct(RequestStack $requestStack, $holidays)
   {
     $this->requestStack = $requestStack;
-    $this->em           = $em;
+
     $this->holidays     = $holidays;
   }
 
   public function validate( $value, Constraint $constraint)
   {
-    $request = $this->requestStack->getCurrentRequest();
+    //$request = $this->requestStack->getCurrentRequest();
 
     $dateVisit = $value;
     $badDates = $this->holidays;

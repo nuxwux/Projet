@@ -3,6 +3,7 @@
 namespace Louvre\TicketBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Louvre\TicketBundle\Form\GlobalTicketType;
 use Louvre\TicketBundle\Form\TicketType;
 use Symfony\Component\HttpFoundation\Request;

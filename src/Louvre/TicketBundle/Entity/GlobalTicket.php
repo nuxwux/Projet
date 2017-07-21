@@ -261,7 +261,7 @@ class GlobalTicket
   /**
    * @Assert\Callback
    */
-   public function ValidateTuesdaySunday(ExecutionContextInterface $context)
+   public function validateTuesdaySunday(ExecutionContextInterface $context)
   {
       
        $dateVisit = $this->getDatevisit()->format("w");
@@ -279,7 +279,7 @@ class GlobalTicket
  /**
    * @Assert\Callback
    */
-   public function ValidatePreviousDays(ExecutionContextInterface $context)
+   public function validatePreviousDays(ExecutionContextInterface $context)
   {
       
        $dateVisit = $this->getDatevisit();
@@ -302,7 +302,7 @@ class GlobalTicket
  /**
    * @Assert\Callback
    */
-   public function ValidateTicketype(ExecutionContextInterface $context)
+   public function validateTicketype(ExecutionContextInterface $context)
   {
       
        $ticketype = $this->getTicketype();
@@ -326,7 +326,7 @@ class GlobalTicket
    /**
    * @Assert\Callback
    */
-   public function ValidateBirthdate(ExecutionContextInterface $context)
+   public function validateBirthdate(ExecutionContextInterface $context)
   {
       
      

@@ -26,7 +26,7 @@ class TicketLimitValidator extends ConstraintValidator
   public function validate($value, Constraint $constraint)
   {
     
-    $request = $this->requestStack->getCurrentRequest();
+   // $request = $this->requestStack->getCurrentRequest();
 
     $numberOfTicket = $this->em
       ->getRepository('LouvreTicketBundle:Ticket')
