@@ -4,10 +4,10 @@ namespace Louvre\TicketBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Louvre\TicketBundle\Form\GlobalTicketType;
-use Louvre\TicketBundle\Form\TicketType;
+use Louvre\TicketBundle\Form\Type\GlobalTicketType;
+
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+
 use Louvre\TicketBundle\Entity\GlobalTicket;
 
 class TicketingController extends Controller

@@ -5,7 +5,7 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "Louvre\\": "src/Louvre"
         },
         "classmap": [
             "app/AppKernel.php",
