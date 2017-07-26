@@ -12,7 +12,7 @@ class TicketLimitValidator extends ConstraintValidator
 {
 
 
-  private $requestStack;
+
   private $em;
 
   // Les arguments déclarés dans la définition du service arrivent au constructeur
@@ -26,15 +26,13 @@ class TicketLimitValidator extends ConstraintValidator
   public function validate($value, Constraint $constraint)
   {
     
-   // $request = $this->requestStack->getCurrentRequest();
+
 
     $numberOfTicket = $this->em
       ->getRepository('LouvreTicketBundle:Ticket')
       ->getTicketsAtDate($value)
       ;
     $numberOfTicket = intval($numberOfTicket["nb"]);
-      // dump($numberOfTicket);
-      // die();
 
       if ($numberOfTicket > 1000) {
         $this->context

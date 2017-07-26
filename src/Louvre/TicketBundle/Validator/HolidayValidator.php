@@ -13,7 +13,7 @@ class HolidayValidator extends ConstraintValidator
 {
 
 
-  private $requestStack;
+
 
   private $holidays;
 
@@ -28,7 +28,7 @@ class HolidayValidator extends ConstraintValidator
 
   public function validate( $value, Constraint $constraint)
   {
-    //$request = $this->requestStack->getCurrentRequest();
+
 
     $dateVisit = $value;
     $badDates = $this->holidays;

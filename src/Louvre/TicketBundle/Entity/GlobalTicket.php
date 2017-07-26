@@ -62,7 +62,7 @@ class GlobalTicket
      */
     private $name;
     /**
-     * @ORM\OneToMany(targetEntity="Louvre\TicketBundle\Entity\Ticket", mappedBy="global_ticket",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Louvre\TicketBundle\Entity\Ticket", mappedBy="globalticket",cascade={"persist"})
      * @Assert\Valid()
      */
     private $tickets;
@@ -286,9 +286,7 @@ class GlobalTicket
        $today = new \DateTime();
        $interval  = $today->diff($dateVisit);
 
-      //   dump($interval);
-      // die();
-       
+
        if (($interval->invert == "1") && ($interval->invert == "1" && $interval->days != "0")) {
 
        $context
