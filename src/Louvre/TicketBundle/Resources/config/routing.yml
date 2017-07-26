@@ -21,7 +21,3 @@ louvre_ticket_confirm:
     defaults:
         _controller: LouvreTicketBundle:Ticketing:confirm
 
-louvre_ticket_pdf:
-    path:    /pdf/{id}
-    defaults:
-        _controller: LouvreTicketBundle:Ticketing:pdf

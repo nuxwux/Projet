@@ -74,7 +74,7 @@ class Ticket
 
     private $reduction;
     /**
-     * @ORM\ManyToOne(targetEntity="Louvre\TicketBundle\Entity\GlobalTicket", inversedBy="ticket")
+     * @ORM\ManyToOne(targetEntity="Louvre\TicketBundle\Entity\GlobalTicket", inversedBy="tickets")
      * @ORM\JoinColumn()
      */
     private $globalticket;
