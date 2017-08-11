@@ -1,5 +1,5 @@
 <?php
-namespace Louvre\TicketBundle\Email;
+namespace Louvre\TicketBundle\Services\Email;
 use Doctrine\ORM\EntityManagerInterface;
 
 
@@ -18,7 +18,7 @@ class Mailer
 
   public function sendEmail($email, $filename )
   {
-    $dir = __DIR__.'../../../../../var/cache/';
+    $dir = '/tmp/';
 
      $message = \Swift_Message::newInstance()
         ->setSubject("Confirmation d'achat de vos tickets")
@@ -27,6 +27,7 @@ class Mailer
         ->setBody('Voici en pièce jointe vos tickets')
         ->attach(\Swift_Attachment::fromPath($dir.$filename))
     ;
+
     $this->mailer->send($message);
 
 }

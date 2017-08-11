@@ -1,5 +1,5 @@
 <?php
-namespace Louvre\TicketBundle\Pdf;
+namespace Louvre\TicketBundle\Services\Pdf;
 use Doctrine\ORM\EntityManagerInterface;
 
 class PdfBuilder
@@ -27,7 +27,7 @@ class PdfBuilder
           ));
 
         $filename = sprintf('TicketLouvre-%s.pdf', md5($id.microtime()));
-        $dir = __DIR__.'../../../../../var/cache/';
+        $dir = '/tmp/';
         
         
         $this->pdf->generateFromHtml($html, $dir.$filename);

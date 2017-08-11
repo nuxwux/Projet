@@ -1,6 +1,6 @@
 services:
     louvre_ticket.pricer:
-        class: Louvre\TicketBundle\Pricer\LouvrePricer
+        class: Louvre\TicketBundle\Services\Pricer\LouvrePricer
 
     louvre_ticket.validator.ticketlimit:                             
         class: Louvre\TicketBundle\Validator\TicketLimitValidator     
@@ -18,13 +18,13 @@ services:
             - { name: validator.constraint_validator, alias: louvre_ticket_holiday } 
     
     louvre_ticket.email.mailer:
-      class: Louvre\TicketBundle\Email\Mailer
+      class: Louvre\TicketBundle\Services\Email\Mailer
       arguments:
           - "@mailer"
          
 
     louvre_ticket.pdf.pdfbuilder:
-      class: Louvre\TicketBundle\Pdf\PdfBuilder
+      class: Louvre\TicketBundle\Services\Pdf\PdfBuilder
       arguments:
           - "@doctrine.orm.entity_manager"
           - "@templating"

@@ -1,6 +1,6 @@
 <?php
 
-namespace Louvre\TicketBundle\Pricer;
+namespace Louvre\TicketBundle\Services\Pricer;
 
 use Doctrine\ORM\EntityManagerInterface;
 
