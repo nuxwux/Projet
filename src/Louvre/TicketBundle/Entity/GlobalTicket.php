@@ -35,7 +35,7 @@ class GlobalTicket
      */
     private $datecreation;
     /**
-     * @var \Date
+     * @var \Datetime
      *
      * @ORM\Column(name="datevisit", type="date")
      * @TicketLimit()
@@ -132,7 +132,7 @@ class GlobalTicket
      *
      * @return GlobalTicket
      */
-    public function setDatevisit($datevisit)
+    public function setDatevisit(\DateTime $datevisit)
     {
         $this->datevisit = $datevisit;
 

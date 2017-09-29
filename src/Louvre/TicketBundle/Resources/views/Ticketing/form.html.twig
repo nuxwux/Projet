@@ -8,8 +8,8 @@
       <div class="panel-body">
         <div class="form-group">
           <div class="col-md-5"></div>
-            <div class="col-md-2">
-                {{ form_widget(form.datevisit, {'attr' : {'class':'form-control datepicker'}}) }}
+            <div class="col-md-2 datepicker ">
+                {{ form_widget(form.datevisit, {'attr' : {'class':'form-control '}}) }}
                 {{ form_errors(form.datevisit)}}
             </div>
          </div>
@@ -38,6 +38,7 @@
        <br>
        <a href="#" id="add_ticket" class="btn btn-default">Ajouter un billet</a>
        <br>
+
        
      </div>
     </div>
@@ -69,41 +70,19 @@
 </div>
 
 <script type="text/javascript">
+
   $(document).ready(function() {
-
-    var holidays = ["01-05","01-11","25-12"]
-    
-    var options = {
-          minDate: -0,
-          changeMonth: true,
-          changeYear: true,
-          yearRange: "1940:2020",
-          altField: "#datepicker",
-          closeText: 'Fermer',
-          prevText: 'Précédent',
-          nextText: 'Suivant',
-          currentText: 'Aujourd\'hui',
-          monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-          monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-          dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-          dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-          dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-          weekHeader: 'Sem.',
-          dateFormat: 'dd/mm/yy',
-          beforeShowDay: function(date){
-            var day = date.getDay();
-            var string = jQuery.datepicker.formatDate('dd-mm', date);
-            return [ holidays.indexOf(string) == -1 && day != 0 && day != 2]
-           }
-          };
-    
-
-
     $(function() {
-      $( ".datepicker" ).datepicker(options);
-      options.minDate = null;
-      options.beforeShowDay = null;
-      $( ".datepicker2" ).datepicker(options);
+
+      $( ".datepicker" ).datepicker({
+          startDate: "new Date()",
+          format: "dd/mm/yyyy",
+          daysOfWeekDisabled: "0,2",
+          language: "fr",
+          datesDisabled :['25/12/2017', '01/11/2017', '01/05/2017','25/12/2018', '01/11/2018', '01/05/2018'
+              ,'25/12/2019', '01/11/2019', '01/05/2019','25/12/2020', '01/11/2020', '01/05/2020',
+              '25/12/2021', '01/11/2021', '01/05/2021']
+        });
       });
 
 
@@ -114,10 +93,6 @@
             $("#aide").hide();
         }
     });
-
-  
-
-
     var $container = $('div#louvre_ticketbundle_globalticket_tickets');
     var index = $container.find(':input').length;
     
@@ -140,18 +115,20 @@
         addDeleteLink($(this));
       });
     }
-
     // La fonction qui ajoute un ticket
+
     function addTicket($container) {
       var template = $container.attr('data-prototype')
-        .replace(/__name__label__/g, 'Billet n°' + (index+1))
-        .replace(/__name__/g,        index)
+          .replace(/__name__label__/g, 'Billet n°' + (index + 1))
+          .replace(/__name__/g, index)
       ;
       var $prototype = $(template);
       addDeleteLink($prototype);
       $container.append($prototype);
       index++;
-    }
+
+      }
+
 
     // La fonction qui ajoute un lien de suppression
     function addDeleteLink($prototype) {
@@ -159,6 +136,7 @@
       $prototype.append($deleteLink);
       $deleteLink.click(function(e) {
         $prototype.remove();
+        index = index - 1;
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
       });

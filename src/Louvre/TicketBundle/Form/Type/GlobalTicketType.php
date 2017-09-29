@@ -13,11 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-
-
-
-
-
 class GlobalTicketType extends AbstractType
 {
     /**
@@ -31,13 +26,13 @@ class GlobalTicketType extends AbstractType
             );
 
         $builder
-        ->add('datevisit', DateType::class, array(
-            'widget' => 'single_text',
-            'format' => 'dd/MM/yyyy',
-            'html5' => 'false',
-            'attr' => ['class' => 'datepicker'],
-            ))
+            ->add('datevisit', DateType::class, array(
+                'widget' => 'single_text',
+                'format' => 'dd/MM/yyyy',
+                'html5' => 'false',
+                'attr' => array('style' => 'display:none')
 
+            ))
         ->add('ticketype', ChoiceType::class , array(
             'multiple' => false,
             'expanded' => true,
