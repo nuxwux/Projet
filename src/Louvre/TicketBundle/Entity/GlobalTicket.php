@@ -326,22 +326,22 @@ class GlobalTicket
    */
    public function validateBirthdate(ExecutionContextInterface $context)
   {
-      
-     
+
+
        $var = $this->tickets;
        $var2 = $var->toArray();
        $today = new \DateTime();
        $child = false;
        $adult = false;
-       
-     
-       foreach($var2 as $value) {        
+
+
+       foreach($var2 as $value) {
         $birthdate = $value->getBirthdate();
         $interval = $today->diff($birthdate)->y;
-                
+
         if ($interval >= "4") {
             $adult = true;
-           
+
         } else {
             $child = true;
         }
@@ -351,12 +351,12 @@ class GlobalTicket
 
        } else if($child) {
          $context
-         ->buildViolation('Un enfant de moins de 4ans ne peut pas acheter un billet seul.') 
-         ->atPath('tickets')                                                  
+         ->buildViolation('Un enfant de moins de 4ans ne peut pas acheter un billet seul.')
+         ->atPath('tickets')
          ->addViolation()
        ;
        }
-       
+
   }
 
     /**

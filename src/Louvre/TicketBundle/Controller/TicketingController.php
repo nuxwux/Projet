@@ -59,6 +59,8 @@ class TicketingController extends Controller
 
         $prix = $pricer->ticketPricer($ticket->getBirthdate(), $globalticket->getTicketype(), $ticket->getReduction());
         $ticket->setPrice($prix);
+        $typeTarif = $pricer->ticketTyper($ticket->getPrice(),$globalticket->getTicketype());
+        $ticket->setType($typeTarif);
 
         $totalPrice = $totalPrice + $ticket->getPrice();
 

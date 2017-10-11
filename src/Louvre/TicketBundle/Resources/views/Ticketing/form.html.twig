@@ -34,7 +34,8 @@
 
        {% form_theme form.tickets 'LouvreTicketBundle:Forms:test.html.twig' %}
        {{ form_widget(form.tickets) }}
-        
+
+
        <br>
        <a href="#" id="add_ticket" class="btn btn-default">Ajouter un billet</a>
        <br>
@@ -98,11 +99,7 @@
     
 
     $('#add_ticket').click(function(e) {
-      addTicket($container);   
-      
-      
-      $( ".datepicker2" ).datepicker(options);
-
+      addTicket($container);
       e.preventDefault(); 
       return false;
     });
@@ -119,13 +116,13 @@
 
     function addTicket($container) {
       var template = $container.attr('data-prototype')
-          .replace(/__name__label__/g, 'Billet n°' + (index + 1))
+//          .replace(/__name__label__/g, 'Informations visiteur ' )
           .replace(/__name__/g, index)
       ;
       var $prototype = $(template);
       addDeleteLink($prototype);
       $container.append($prototype);
-      index++;
+
 
       }
 
@@ -136,7 +133,7 @@
       $prototype.append($deleteLink);
       $deleteLink.click(function(e) {
         $prototype.remove();
-        index = index - 1;
+
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
       });

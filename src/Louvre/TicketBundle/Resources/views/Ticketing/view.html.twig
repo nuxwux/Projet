@@ -9,16 +9,46 @@
 
   <h1> Récapitulatif de votre commande</h1>
   <div class="well">
- 		<h3> {{ globalticket.name }} </h3>
- 		<p>  Billet: {{ globalticket.ticketype }}, le {{ globalticket.datevisit|date('d/m/Y')}} </p>
- 	
- 		
- 		{% for ticket in listTickets %}
- 			<p> Nom: {{ticket.name}}. Prénom: {{ticket.firstname}} :  {{ticket.price}}€</p>
- 		{% endfor %}
- 		<p> Email: {{ globalticket.mail}} </p>
+ 		<h3> Visite du {{ globalticket.datevisit|date('d/m/Y')}} pour la {{ globalticket.ticketype }}  </h3>
 
-    <h3>Prix total : {{ globalticket.totalprice }} €</h3> 
+
+
+
+          <table class="table table-bordered">
+              <thead class="thead-inverse">
+              <tr>
+                  <th>Visiteur</th>
+                  <th>Tarif</th>
+                  <th>Prix</th>
+              </tr>
+              </thead>
+              {% for ticket in listTickets %}
+              <tbody>
+              <tr>
+                  <td>{{ticket.name}} {{ticket.firstname}}</td>
+                  <td>{{ticket.type}}</td>
+                  <td>
+                      {{ticket.price}} €
+                  </td>
+              </tr>
+              </tbody>
+              {% endfor %}
+              <tfoot>
+              <tr>
+                  <th colspan="2" class="text-right">
+                      Total
+                  </th>
+                  <th>
+                      {{ globalticket.totalprice }} €
+                  </th>
+              </tr>
+              </tfoot>
+          </table>
+
+
+ 		<p><b>Email:</b>  {{ globalticket.mail}} </p>
+
+
  </div>
 
  <p>
