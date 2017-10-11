@@ -5,7 +5,7 @@ louvre_ticket_home:
 
 
 louvre_ticket_view:
-    path:    /billetterie/{id}
+    path:    /recapitulatif/{id}
     defaults:
         _controller: LouvreTicketBundle:Ticketing:view 
 
