@@ -35,7 +35,7 @@ class PdfBuilder
 
         $this->pdf->generateFromHtml($html, $dir.$filename);
 
-        var_dump($filename);
+
 
         return $filename;
 

@@ -41,41 +41,32 @@ class TicketingController extends Controller
     public function viewAction($id)
   {
     $em = $this->getDoctrine()->getManager();
-    
     $globalticket = $em->getRepository('LouvreTicketBundle:GlobalTicket')->find($id);
    
     if (null === $globalticket) {
       throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
     }
-    // Récupération de la liste des tickets de l'annonce
     $listTickets = $em
     ->getRepository('LouvreTicketBundle:Ticket')
     ->findBy(array('globalticket' => $globalticket ))
     ;
     $pricer = $this->container->get('louvre_ticket.pricer');
     $totalPrice = 0;
-
     foreach( $listTickets as $ticket) {
-
         $prix = $pricer->ticketPricer($ticket->getBirthdate(), $globalticket->getTicketype(), $ticket->getReduction());
         $ticket->setPrice($prix);
         $typeTarif = $pricer->ticketTyper($ticket->getPrice(),$globalticket->getTicketype());
         $ticket->setType($typeTarif);
-
         $totalPrice = $totalPrice + $ticket->getPrice();
-
     }
      
      $globalticket->setTotalprice($totalPrice);
      $id = $globalticket->getId();
      $md5 = md5($id);
      $globalticket->setMd5($md5);
-
      $em->flush();
-
      $public_key = $this->getParameter('stripe_public_key');
 
-    
     return $this->render('LouvreTicketBundle:Ticketing:view.html.twig', array(
       'globalticket'           => $globalticket,
       'listTickets'            => $listTickets,
