@@ -24,14 +24,13 @@ class TicketingControllerTest extends WebTestCase
 
 
         $this->assertEquals(1, $crawler->filter('h1:contains("Selection des Billets ")')->count());
-
-
     }
-    public function testNotValidData()
+    public function testNoValidData()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/recaptilatif/{id}');
+        $crawler = $client->request('GET', '/recapitulatif/223');
 
         $this->assertFalse($client->getResponse()->isSuccessful());
+
     }
 }
