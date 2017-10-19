@@ -45,7 +45,7 @@ class GlobalTicketType extends AbstractType
             'allow_add'    => true,
             'allow_delete' => true,
             'by_reference' => false,
-            'entry_options' => array('label' => 'infos')
+            'entry_options' => array('label' => 'Informations')
          ))
         ->add('save',      SubmitType::class, array(
             'attr' => array('class' => 'btn btn-primary')))       
