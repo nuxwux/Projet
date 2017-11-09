@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a1821ec-aa4d-4b3d-ad14-2dca1a2f7a26" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Louvre/TicketBundle/Resources/public/images/e_bleue.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Louvre/TicketBundle/Resources/public/images/favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Louvre/TicketBundle/Resources/public/images/maison.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Louvre/TicketBundle/Resources/public/images/mastercard.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Louvre/TicketBundle/Resources/public/images/visa.gif" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Louvre/TicketBundle/Resources/views/Ticketing/form.html.twig" afterPath="$PROJECT_DIR$/src/Louvre/TicketBundle/Resources/views/Ticketing/form.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Louvre/TicketBundle/Resources/views/layout.html.twig" afterPath="$PROJECT_DIR$/src/Louvre/TicketBundle/Resources/views/layout.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TicketBundle/Controller/TicketingControllerTest.php" afterPath="$PROJECT_DIR$/tests/TicketBundle/Controller/TicketingControllerTest.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,11 +43,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="GlobalTicketType.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="GlobalTicketType.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Louvre/TicketBundle/Form/Type/GlobalTicketType.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="510">
-                  <caret line="48" column="11" lean-forward="true" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
+                <state relative-caret-position="323">
+                  <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/.gitignore">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="306">
+                  <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -77,8 +80,8 @@
           <file leaf-file-name="form.html.twig" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Louvre/TicketBundle/Resources/views/Ticketing/form.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="716">
-                  <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+                <state relative-caret-position="444">
+                  <caret line="110" column="50" lean-forward="false" selection-start-line="110" selection-start-column="50" selection-end-line="110" selection-end-column="50" />
                   <folding />
                 </state>
               </provider>
@@ -115,7 +118,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Louvre/TicketBundle/DependencyInjection/Configuration.php" />
         <option value="$PROJECT_DIR$/web/app.php" />
         <option value="$PROJECT_DIR$/src/Louvre/TicketBundle/DependencyInjection/LouvreTicketExtension.php" />
         <option value="$PROJECT_DIR$/src/Louvre/TicketBundle/Validator/HolidayValidator.php" />
@@ -166,6 +168,7 @@
         <option value="$PROJECT_DIR$/tests/TicketBundle/Controller/TicketingControllerTest.php" />
         <option value="$PROJECT_DIR$/src/Louvre/TicketBundle/Resources/views/Ticketing/form.html.twig" />
         <option value="$PROJECT_DIR$/src/Louvre/TicketBundle/Form/Type/GlobalTicketType.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -244,8 +247,9 @@
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="width" value="1849" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="465" />
+    <option name="width" value="1266" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -532,25 +536,25 @@
       <workItem from="1510010642168" duration="618000" />
       <workItem from="1510018914473" duration="5521000" />
       <workItem from="1510164546695" duration="3732000" />
-      <workItem from="1510185383850" duration="4553000" />
+      <workItem from="1510185383850" duration="5480000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217754000" />
+    <option name="totallyTimeSpent" value="218681000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1056" extended-state="7" />
+    <frame x="465" y="0" width="1266" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0981717" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2048093" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34130436" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34734514" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -605,13 +609,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/TicketBundle/Form/Type/GlobalTicketTypeTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="26" column="51" lean-forward="true" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/TicketBundle/Form/Type/TicketTypeTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
@@ -916,8 +913,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Louvre/TicketBundle/Form/Type/GlobalTicketType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="48" column="11" lean-forward="true" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
+        <state relative-caret-position="323">
+          <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
