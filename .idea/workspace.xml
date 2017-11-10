@@ -30,14 +30,14 @@
       <file leaf-file-name="Mailer.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Louvre/TicketBundle/Services/Email/Mailer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="36" column="57" lean-forward="false" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
+            <state relative-caret-position="235">
+              <caret line="30" column="51" lean-forward="false" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
               <folding>
-                <marker date="1510333554669" expanded="true" signature="542:998" ph="..." />
-                <marker date="1510333554669" expanded="true" signature="572:652" ph="..." />
-                <marker date="1510333554669" expanded="true" signature="572:692" ph="..." />
-                <marker date="1510333554669" expanded="true" signature="572:998" ph="..." />
-                <marker date="1510333554669" expanded="true" signature="623:652" ph="..." />
+                <marker date="1510334142555" expanded="true" signature="542:1326" ph="..." />
+                <marker date="1510334142555" expanded="true" signature="572:704" ph="..." />
+                <marker date="1510334142555" expanded="true" signature="572:744" ph="..." />
+                <marker date="1510334142555" expanded="true" signature="572:1326" ph="..." />
+                <marker date="1510334142555" expanded="true" signature="623:704" ph="..." />
               </folding>
             </state>
           </provider>
@@ -212,8 +212,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="1280" />
-    <option name="height" value="1040" />
+    <option name="y" value="408" />
+    <option name="width" value="1849" />
+    <option name="height" value="632" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -598,12 +599,12 @@
       <workItem from="1510018914473" duration="5521000" />
       <workItem from="1510164546695" duration="3732000" />
       <workItem from="1510185383850" duration="7488000" />
-      <workItem from="1510238271880" duration="11038000" />
+      <workItem from="1510238271880" duration="11345000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="231727000" />
+    <option name="totallyTimeSpent" value="232034000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
@@ -981,14 +982,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Louvre/TicketBundle/Services/Email/Mailer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="36" column="57" lean-forward="false" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
+        <state relative-caret-position="235">
+          <caret line="30" column="51" lean-forward="false" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
           <folding>
-            <marker date="1510333554669" expanded="true" signature="542:998" ph="..." />
-            <marker date="1510333554669" expanded="true" signature="572:652" ph="..." />
-            <marker date="1510333554669" expanded="true" signature="572:692" ph="..." />
-            <marker date="1510333554669" expanded="true" signature="572:998" ph="..." />
-            <marker date="1510333554669" expanded="true" signature="623:652" ph="..." />
+            <marker date="1510334142555" expanded="true" signature="542:1326" ph="..." />
+            <marker date="1510334142555" expanded="true" signature="572:704" ph="..." />
+            <marker date="1510334142555" expanded="true" signature="572:744" ph="..." />
+            <marker date="1510334142555" expanded="true" signature="572:1326" ph="..." />
+            <marker date="1510334142555" expanded="true" signature="623:704" ph="..." />
           </folding>
         </state>
       </provider>
