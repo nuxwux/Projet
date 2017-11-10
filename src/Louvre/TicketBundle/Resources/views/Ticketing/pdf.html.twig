@@ -1,43 +1,52 @@
 <html>
- <head>
- 	<meta charset="utf-8"/>
-    <link rel="icon" type="image/x-icon" href="favic.ico"/>
-    <title>Pdf ticket</title>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Pdf ticket</title>
+		<style type="text/css">
+			#bloc_page{
+				width: 900px;
+				height: 400px;
+				display: flex;
+				position: relative;
+				border: solid black;
+				padding-top: 20px;
+			}
+			div {
+				padding:20px;
+			}
+			#bloc_page::after {
 
-	<style type="text/css">
-	
-	#bloc_page{	
-		width: 900px ;
-		margin: auto;
-	}
-	header{
-		text-align:center;
-	}
-	ul{
-		list-style-type: none;
-	}	
-	
-	</style>
- </head>
- <body>
- 	<div id="bloc_page">
- 		<header>
-		    <img src="{{ absolute_url(asset('bundles/louvreticket/images/logoLouvre.png')) }}" alt="logo_Louvre" width="250" >
-		    <p> www.louvre.fr </p>
-		    <h1> MUSEE {{ globalticket.ticketype }}</h1>
-		</header>
-		<section>
-		    <p> Date: <b>{{ globalticket.datevisit|date('d/m/Y') }}<b></p>
-		    <p> Prix total : <b>{{ globalticket.totalprice}} euros<b></p>
-		    <p> Visiteurs : </p>
-		    <ul>
-		    {% for ticket in listTickets %}
-		    		<li> -<b>{{ticket.firstname}} {{ticket.name}}<b> </li>		    	
-		    {% endfor %}
-		    </ul>
+				content:"";
+				background-image: url("{{ absolute_url(asset('bundles/louvreticket/images/fond.jpg')) }}");
+				opacity: 0.3;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				position: absolute;
+				z-index: -1;
+			}
+			ul{
+				list-style-type: none;
+			}
+		</style>
+</head>
+	<body>
+		<div id="bloc_page">
+			<div>
+				<img src="{{ absolute_url(asset('bundles/louvreticket/images/logo.png')) }}" alt="logo_Louvre" width="250" >
+			</div>
+			<div>
+				<h2><b>Visite du Louvre</b>: {{ globalticket.datevisit|date('d/m/Y') }}, {{ globalticket.ticketype }}</h2>
+				<h3> Visiteur(s) : </h3>
+				<ul>
+					{% for ticket in listTickets %}
+						<li> {{ticket.firstname}} {{ticket.name}} </li>
+					{% endfor %}
+				</ul>
 
-		    <p> Code de reservation: <b>{{globalticket.md5}}<b></p>
-    	</section>
-    </div>
- </body>
+				<h3> Code de reservation: {{globalticket.md5}}</h3>
+			</div>
+		</div>
+</body>
 </html>

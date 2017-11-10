@@ -21,3 +21,8 @@ louvre_ticket_confirm:
     defaults:
         _controller: LouvreTicketBundle:Ticketing:confirm
 
+louvre_ticket_test2:
+    path:    /test2
+    defaults:
+        _controller: LouvreTicketBundle:Ticketing:test2
+

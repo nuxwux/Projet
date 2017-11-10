@@ -9,7 +9,7 @@ class LouvrePricer
   public function ticketPricer($birthdate, $ticketype, $reduction) {
     $today = new \DateTime();
     $interval  = $today->diff($birthdate);
-    if ($reduction) {
+    if ($reduction && $interval->y >= "12") {
        $price = 10;
 
     } else if ($interval->y < "4") {

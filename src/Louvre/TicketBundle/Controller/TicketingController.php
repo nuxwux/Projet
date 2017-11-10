@@ -37,6 +37,12 @@ class TicketingController extends Controller
 			
 			));
     }
+    public function test2Action()
+    {
+
+
+        return $this->render('LouvreTicketBundle:Ticketing:test2.html.twig');
+    }
 
     public function viewAction($id)
   {
