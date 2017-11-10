@@ -28,18 +28,16 @@ class Mailer
             '<html>'.
                     '<head>'.
                         '<style type="text/css">'.
-                            'body{ text-align:center;} '.
+
 
                         '</style>'.
                     '</head>'.
                     '<body>'.
                         '<h1> Musée du Louvre </h1>'.
-                        '<p> Vous venez de commander grace à notre billetterie en ligne et nous vous en remercions </p>'.
-                        '<p> Vous trouvere ci-joint votre ticket à imprimer pour accéder au Musee du Louvre</p>'.
-                        '<p>A tres vite au Louvre !</p>'.
-                    '</body>'.
-            '</html>',
-            'text/html'
+                        '<p> Vous venez de commander grac </p>'
+
+
+                    '</body>'
             )
         ->attach(\Swift_Attachment::fromPath($dir.$filename))
     ;
